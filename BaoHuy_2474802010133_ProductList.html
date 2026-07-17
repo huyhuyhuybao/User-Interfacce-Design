@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Danh sách laptop gaming và bộ lọc sản phẩm">
+  <title>GEARVN - Danh sách sản phẩm</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/product-list.css">
+</head>
+<body id="top">
+  <div class="top-promo">
+    <div class="container top-promo__inner">
+      <strong><span>GEARVN</span> | “Pack” to School 2026</strong>
+      <a href="#catalog">Giảm lên đến <b>2.500.000đ</b><i class="bi bi-sun-fill promo-sun" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-main">
+      <a class="brand" href="BaoHuy_2474802010133_Home.html" aria-label="Về trang chủ">
+        <img class="brand__mark" src="assets/images/logo-mark.png" alt="">
+        <span class="brand__name">GEARVN<small>GEARVN.COM</small></span>
+      </a>
+
+      <button class="category-button" type="button">
+        <i class="bi bi-list" aria-hidden="true"></i><span>Danh mục</span>
+      </button>
+
+      <form class="search" action="BaoHuy_2474802010133_ProductList.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Bạn cần tìm gì?" aria-label="Tìm kiếm sản phẩm" required>
+        <button type="submit" aria-label="Tìm kiếm"><i class="bi bi-search" aria-hidden="true"></i></button>
+      </form>
+
+      <nav class="quick-actions" aria-label="Tiện ích khách hàng">
+        <a href="#support"><i class="bi bi-headset" aria-hidden="true"></i><b>Hotline<small>1900.5301</small></b></a>
+        <a href="#footer"><i class="bi bi-geo-alt" aria-hidden="true"></i><b>Hệ thống<small>Showroom</small></b></a>
+        <a href="#footer"><i class="bi bi-clipboard-check" aria-hidden="true"></i><b>Tra cứu<small>đơn hàng</small></b></a>
+        <a href="#"><i class="bi bi-cart3" aria-hidden="true"></i><b>Giỏ hàng</b></a>
+        <a class="login" href="#"><i class="bi bi-person" aria-hidden="true"></i><b>Đăng nhập</b></a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="service-nav" aria-label="Dịch vụ">
+    <div class="container service-nav__inner">
+      <a href="#"><i class="bi bi-tag" aria-hidden="true"></i><span>BUILD PC tặng màn hình 240Hz</span></a>
+      <a href="#"><i class="bi bi-arrow-repeat" aria-hidden="true"></i><span>Thu cũ</span></a>
+      <a href="#"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Tin tức</span></a>
+      <a href="#"><i class="bi bi-tools" aria-hidden="true"></i><span>Dịch vụ kỹ thuật tại nhà</span></a>
+      <a href="#"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Thu cũ đổi mới</span></a>
+      <a href="#"><i class="bi bi-shield-check" aria-hidden="true"></i><span>Tra cứu bảo hành</span></a>
+    </div>
+  </nav>
+
+  <main class="catalog-page" id="catalog">
+    <div class="side-ad side-ad--left" aria-hidden="true"><img src="assets/images/smallbanner1.webp" alt=""></div>
+    <div class="side-ad side-ad--right" aria-hidden="true"><img src="assets/images/smallbanner2.webp" alt=""></div>
+
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Đường dẫn trang">
+        <a href="BaoHuy_2474802010133_Home.html"><i class="bi bi-house-door" aria-hidden="true"></i> Trang chủ</a>
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+        <span>Laptop Gaming</span>
+      </nav>
+
+      <a class="catalog-banner" href="#product-grid">
+        <img src="assets/images/back2school.webp" alt="Laptop Office Back to School">
+      </a>
+
+      <section class="catalog-panel">
+        <div class="catalog-title-row">
+          <div>
+            <p class="eyebrow">LAPTOP GAMING</p>
+            <h1>Laptop Gaming chính hãng</h1>
+            <p>Hiển thị <strong id="result-count">12</strong> sản phẩm phù hợp</p>
+          </div>
+          <label class="sort-control">
+            <span>Sắp xếp:</span>
+            <select id="sort-products" aria-label="Sắp xếp sản phẩm">
+              <option value="featured">Nổi bật</option>
+              <option value="price-asc">Giá tăng dần</option>
+              <option value="price-desc">Giá giảm dần</option>
+              <option value="name-asc">Tên A–Z</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="filter-toolbar" role="group" aria-label="Bộ lọc nhanh">
+          <button class="filter-main-button" type="button" data-open-filter>
+            <i class="bi bi-funnel" aria-hidden="true"></i> Bộ lọc <span id="filter-count" hidden>0</span>
+          </button>
+          <button type="button" data-open-filter data-focus-filter="status">Tình trạng sản phẩm <i class="bi bi-chevron-down"></i></button>
+          <button type="button" data-open-filter data-focus-filter="price">Giá <i class="bi bi-chevron-down"></i></button>
+          <button type="button" data-open-filter data-focus-filter="brand">Hãng <i class="bi bi-chevron-down"></i></button>
+          <button type="button" data-open-filter data-focus-filter="cpu">CPU <i class="bi bi-chevron-down"></i></button>
+          <button type="button" data-open-filter data-focus-filter="screen">Kích thước màn hình <i class="bi bi-chevron-down"></i></button>
+          <button type="button" data-open-filter data-focus-filter="ram">RAM <i class="bi bi-chevron-down"></i></button>
+          <button type="button" data-open-filter data-focus-filter="ssd">SSD <i class="bi bi-chevron-down"></i></button>
+          <button type="button" data-open-filter data-focus-filter="vga">VGA <i class="bi bi-chevron-down"></i></button>
+        </div>
+
+        <div class="active-filters" id="active-filters" hidden>
+          <span>Đang lọc:</span>
+          <div id="active-filter-list"></div>
+          <button type="button" id="clear-active-filters">Xóa tất cả</button>
+        </div>
+
+        <div class="catalog-grid" id="product-grid">
+          <article class="catalog-card" data-name="Laptop gaming Acer Nitro ProPanel ANV15" data-brand="acer" data-price="30890000" data-cpu="intel-i5" data-screen="15.6" data-ram="16" data-ssd="512" data-vga="rtx-5050" data-status="available">
+            <span class="hot-label"><i class="bi bi-fire"></i> Quà tặng HOT</span>
+            <img src="assets/images/propanel.webp" alt="Laptop Acer Nitro ProPanel">
+            <h2>Laptop gaming Acer Nitro ProPanel ANV15</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> Core 5 210H</span><span><i class="bi bi-gpu-card"></i> RTX 5050 8GB</span><span><i class="bi bi-memory"></i> 16GB</span><span><i class="bi bi-device-ssd"></i> 512GB</span><span><i class="bi bi-display"></i> 15.6&quot; 180Hz</span></div>
+            <del>34.490.000đ</del><p class="catalog-price">30.890.000đ <span>-10%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Acer Aspire 7" data-brand="acer" data-price="25790000" data-cpu="intel-i5" data-screen="15.6" data-ram="16" data-ssd="512" data-vga="rtx-3050" data-status="available">
+            <img src="assets/images/aspire1.webp" alt="Laptop Acer Aspire 7">
+            <h2>Laptop gaming Acer Aspire 7 A715-59G</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> i5-13620H</span><span><i class="bi bi-gpu-card"></i> RTX 3050 6GB</span><span><i class="bi bi-memory"></i> 16GB</span><span><i class="bi bi-device-ssd"></i> 512GB</span><span><i class="bi bi-display"></i> 15.6&quot; FHD</span></div>
+            <del>28.990.000đ</del><p class="catalog-price">25.790.000đ <span>-11%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Acer Nitro V15" data-brand="acer" data-price="27890000" data-cpu="amd-r5" data-screen="15.6" data-ram="16" data-ssd="512" data-vga="rtx-3050" data-status="available">
+            <img src="assets/images/nitro_panel1.webp" alt="Laptop Acer Nitro V15">
+            <h2>Laptop gaming Acer Nitro V15 ANV15-41</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> Ryzen 5 7535HS</span><span><i class="bi bi-gpu-card"></i> RTX 3050 6GB</span><span><i class="bi bi-memory"></i> 16GB</span><span><i class="bi bi-device-ssd"></i> 512GB</span><span><i class="bi bi-display"></i> 15.6&quot; 180Hz</span></div>
+            <del>29.990.000đ</del><p class="catalog-price">27.890.000đ <span>-7%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Acer Nitro Lite 16" data-brand="acer" data-price="29190000" data-cpu="intel-i7" data-screen="16" data-ram="16" data-ssd="512" data-vga="rtx-4050" data-status="available">
+            <img src="assets/images/nitro_whitr.webp" alt="Laptop Acer Nitro Lite 16">
+            <h2>Laptop gaming Acer Nitro Lite 16 NL16</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> i7-13620H</span><span><i class="bi bi-gpu-card"></i> RTX 4050 6GB</span><span><i class="bi bi-memory"></i> 16GB</span><span><i class="bi bi-device-ssd"></i> 512GB</span><span><i class="bi bi-display"></i> 16&quot; FHD+</span></div>
+            <del>31.990.000đ</del><p class="catalog-price">29.190.000đ <span>-9%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming MSI Katana 15" data-brand="msi" data-price="34890000" data-cpu="intel-i7" data-screen="15.6" data-ram="16" data-ssd="1000" data-vga="rtx-4050" data-status="available">
+            <img src="assets/images/katana.webp" alt="Laptop MSI Katana 15">
+            <h2>Laptop gaming MSI Katana 15 B13VEK</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> i7-13620H</span><span><i class="bi bi-gpu-card"></i> RTX 4050 6GB</span><span><i class="bi bi-memory"></i> 16GB</span><span><i class="bi bi-device-ssd"></i> 1TB</span><span><i class="bi bi-display"></i> 15.6&quot; 144Hz</span></div>
+            <del>35.990.000đ</del><p class="catalog-price">34.890.000đ <span>-3%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Lenovo LOQ 15IRX9" data-brand="lenovo" data-price="42690000" data-cpu="intel-i7" data-screen="15.6" data-ram="16" data-ssd="512" data-vga="rtx-4050" data-status="available">
+            <img src="assets/images/loq1.webp" alt="Laptop Lenovo LOQ">
+            <h2>Laptop gaming Lenovo LOQ 15IRX9</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> i7-13650HX</span><span><i class="bi bi-gpu-card"></i> RTX 4050 6GB</span><span><i class="bi bi-memory"></i> 16GB</span><span><i class="bi bi-device-ssd"></i> 512GB</span><span><i class="bi bi-display"></i> 15.6&quot; 144Hz</span></div>
+            <del>30.000.000đ</del><p class="catalog-price">27.900.000đ<span>-7%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Acer Predator Triton Neo" data-brand="acer" data-price="49990000" data-cpu="intel-i7" data-screen="16" data-ram="32" data-ssd="1000" data-vga="rtx-4060" data-status="available">
+            <span class="hot-label"><i class="bi bi-fire"></i> Quà tặng HOT</span>
+            <img src="assets/images/triton.webp" alt="Laptop Acer Predator Triton Neo">
+            <h2>Laptop gaming Acer Predator Triton Neo 16</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> Ultra 7 155H</span><span><i class="bi bi-gpu-card"></i> RTX 4060 8GB</span><span><i class="bi bi-memory"></i> 32GB</span><span><i class="bi bi-device-ssd"></i> 1TB</span><span><i class="bi bi-display"></i> 16&quot; 2.5K</span></div>
+            <del>35.000.000đ</del><p class="catalog-price">33.250.000đ<span>-5%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Acer Predator Helios Neo" data-brand="acer" data-price="60890000" data-cpu="intel-i9" data-screen="16" data-ram="32" data-ssd="2000" data-vga="rtx-5070" data-status="available">
+            <img src="assets/images/helios1.webp" alt="Laptop Acer Predator Helios Neo">
+            <h2>Laptop gaming Acer Predator Helios Neo 16</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> Ultra 9 210HX</span><span><i class="bi bi-gpu-card"></i> RTX 4080</span><span><i class="bi bi-memory"></i> 32GB</span><span><i class="bi bi-device-ssd"></i> 2TB</span><span><i class="bi bi-display"></i> 16&quot; 240Hz</span></div>
+            <del>45.990.000đ</del><p class="catalog-price">44.600.000đ<span>-3%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Acer Predator Helios Max" data-brand="acer" data-price="114890000" data-cpu="intel-i9" data-screen="16" data-ram="64" data-ssd="2000" data-vga="rtx-5070" data-status="preorder">
+            <img src="assets/images/heliosmax.webp" alt="Laptop Acer Predator Helios Max">
+            <h2>Laptop gaming Acer Predator Helios Max 16S AI</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> Ultra 9 275HX</span><span><i class="bi bi-gpu-card"></i> RTX 5070Ti</span><span><i class="bi bi-memory"></i> 64GB</span><span><i class="bi bi-device-ssd"></i> 2TB</span><span><i class="bi bi-display"></i> 16&quot; 2K 240Hz</span></div>
+            <del>129.900.000đ</del><p class="catalog-price">114.890.000đ <span>-12%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming ASUS ROG Strix" data-brand="asus" data-price="54990000" data-cpu="amd-r7" data-screen="16" data-ram="32" data-ssd="1000" data-vga="rtx-4060" data-status="available">
+            <img src="assets/images/panelmax.webp" alt="Laptop ASUS ROG Strix">
+            <h2>Laptop gaming Acer Nitro Propanel</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> Ryzen 7 8845HS</span><span><i class="bi bi-gpu-card"></i> RTX 4060 8GB</span><span><i class="bi bi-memory"></i> 32GB</span><span><i class="bi bi-device-ssd"></i> 1TB</span><span><i class="bi bi-display"></i> 16&quot; 165Hz</span></div>
+            <del>29.000.000đ</del><p class="catalog-price">27.260.000đ<span>-6%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Gigabyte Aorus" data-brand="gigabyte" data-price="30250000" data-cpu="intel-i5" data-screen="15.6" data-ram="16" data-ssd="512" data-vga="rtx-4050" data-status="available">
+            <img src="assets/images/ggbyte.webp" alt="Laptop Gigabyte Aorus">
+            <h2>Laptop gaming Gigabyte Aorus 15</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> Core i5 13420H</span><span><i class="bi bi-gpu-card"></i> RTX 4050 6GB</span><span><i class="bi bi-memory"></i> 16GB</span><span><i class="bi bi-device-ssd"></i> 512GB</span><span><i class="bi bi-display"></i> 15.6&quot; 144Hz</span></div>
+            <del>32.990.000đ</del><p class="catalog-price">30.250.000đ <span>-8%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+
+          <article class="catalog-card" data-name="Laptop gaming Lenovo Legion 5" data-brand="lenovo" data-price="38990000" data-cpu="amd-r7" data-screen="16" data-ram="32" data-ssd="1000" data-vga="rtx-4060" data-status="preorder">
+            <img src="assets/images/legion5_1.webp" alt="Laptop Lenovo Legion 5">
+            <h2>Laptop gaming Lenovo Legion 5</h2>
+            <div class="spec-box"><span><i class="bi bi-cpu"></i> Ryzen 7 7840HS</span><span><i class="bi bi-gpu-card"></i> RTX 4060 8GB</span><span><i class="bi bi-memory"></i> 32GB</span><span><i class="bi bi-device-ssd"></i> 1TB</span><span><i class="bi bi-display"></i> 16&quot; 165Hz</span></div>
+            <del>42.990.000đ</del><p class="catalog-price">38.990.000đ <span>-9%</span></p>
+            <p class="catalog-rating"><i class="bi bi-star-fill"></i> 0.0 <span>(0 đánh giá)</span></p>
+          </article>
+        </div>
+
+        <div class="empty-products" id="empty-products" hidden>
+          <i class="bi bi-search"></i>
+          <h2>Không tìm thấy sản phẩm phù hợp</h2>
+          <p>Hãy thử bỏ bớt điều kiện lọc.</p>
+          <button type="button" id="empty-clear-filter">Xóa bộ lọc</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="container footer-grid">
+      <div><h3>VỀ GEARVN</h3><a href="#">Giới thiệu</a><a href="#">Tuyển dụng</a><a href="#">Liên hệ</a></div>
+      <div><h3>CHÍNH SÁCH</h3><a href="#">Chính sách bảo hành</a><a href="#">Chính sách giao hàng</a><a href="#">Chính sách bảo mật</a></div>
+      <div><h3>THÔNG TIN</h3><a href="#">Hệ thống cửa hàng</a><a href="#">Hướng dẫn mua hàng</a><a href="#">Hướng dẫn thanh toán</a><a href="#">Hướng dẫn trả góp</a><a href="#">Build PC</a></div>
+      <div id="support"><h3>TỔNG ĐÀI HỖ TRỢ</h3><p><i class="bi bi-telephone"></i> Mua hàng: <a href="tel:19005301">1900.5301</a></p><p><i class="bi bi-shield-check"></i> Bảo hành: <a href="tel:19005325">1900.5325</a></p><p><i class="bi bi-envelope"></i> Email: <a href="mailto:cskh@gearvn.com">cskh@gearvn.com</a></p></div>
+      <div class="footer-payment"><h3>ĐƠN VỊ VẬN CHUYỂN</h3><div class="logo-row"><img src="assets/images/ghn.webp" alt="GHN"><img src="assets/images/ém.webp" alt="EMS"><img src="assets/images/gvn.webp" alt="GVN"></div><h3>CÁCH THỨC THANH TOÁN</h3><div class="pay-row"><img src="assets/images/pay1.webp" alt=""><img src="assets/images/pay_2.webp" alt=""><img src="assets/images/pay_3.webp" alt=""><img src="assets/images/pay_4.webp" alt=""><img src="assets/images/pay_5.webp" alt=""><img src="assets/images/pay_6.webp" alt=""><img src="assets/images/pay_7.webp" alt=""><img src="assets/images/pay_8.webp" alt=""></div></div>
+    </div>
+    <div class="container social-row"><strong>KẾT NỐI VỚI CHÚNG TÔI</strong><a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a><a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a><a href="#" aria-label="Cộng đồng"><i class="bi bi-people-fill"></i></a><img class="certification" src="assets/images/tick.webp" alt="Đã thông báo Bộ Công Thương"></div>
+  </footer>
+
+  <div class="filter-overlay" id="filter-overlay" hidden>
+    <section class="filter-dialog" role="dialog" aria-modal="true" aria-labelledby="filter-title">
+      <header class="filter-dialog__header"><div><p>BỘ LỌC SẢN PHẨM</p><h2 id="filter-title">Chọn nhu cầu của bạn</h2></div><button type="button" id="close-filter" aria-label="Đóng bộ lọc"><i class="bi bi-x-lg"></i></button></header>
+      <div class="filter-dialog__body">
+        <fieldset class="filter-group" data-filter-section="status"><legend>Tình trạng sản phẩm</legend><label><input type="checkbox" data-filter="status" value="available"><span>Sẵn hàng</span></label><label><input type="checkbox" data-filter="status" value="preorder"><span>Đặt trước</span></label></fieldset>
+        <fieldset class="filter-group" data-filter-section="price"><legend>Khoảng giá</legend><label><input type="radio" name="price" data-price-min="0" data-price-max="30000000"><span>Dưới 30 triệu</span></label><label><input type="radio" name="price" data-price-min="30000000" data-price-max="50000000"><span>30–50 triệu</span></label><label><input type="radio" name="price" data-price-min="50000000" data-price-max="999999999"><span>Trên 50 triệu</span></label></fieldset>
+        <fieldset class="filter-group" data-filter-section="brand"><legend>Hãng</legend><label><input type="checkbox" data-filter="brand" value="acer"><span>ACER</span></label><label><input type="checkbox" data-filter="brand" value="asus"><span>ASUS</span></label><label><input type="checkbox" data-filter="brand" value="msi"><span>MSI</span></label><label><input type="checkbox" data-filter="brand" value="lenovo"><span>LENOVO</span></label><label><input type="checkbox" data-filter="brand" value="gigabyte"><span>GIGABYTE</span></label></fieldset>
+        <fieldset class="filter-group" data-filter-section="cpu"><legend>CPU</legend><label><input type="checkbox" data-filter="cpu" value="intel-i5"><span>Intel Core i5</span></label><label><input type="checkbox" data-filter="cpu" value="intel-i7"><span>Intel Core i7</span></label><label><input type="checkbox" data-filter="cpu" value="intel-i9"><span>Intel Core i9 / Ultra 9</span></label><label><input type="checkbox" data-filter="cpu" value="amd-r5"><span>AMD Ryzen 5</span></label><label><input type="checkbox" data-filter="cpu" value="amd-r7"><span>AMD Ryzen 7</span></label></fieldset>
+        <fieldset class="filter-group" data-filter-section="screen"><legend>Kích thước màn hình</legend><label><input type="checkbox" data-filter="screen" value="15.6"><span>15.6 inch</span></label><label><input type="checkbox" data-filter="screen" value="16"><span>16 inch</span></label></fieldset>
+        <fieldset class="filter-group" data-filter-section="ram"><legend>RAM</legend><label><input type="checkbox" data-filter="ram" value="16"><span>16GB</span></label><label><input type="checkbox" data-filter="ram" value="32"><span>32GB</span></label><label><input type="checkbox" data-filter="ram" value="64"><span>64GB</span></label></fieldset>
+        <fieldset class="filter-group" data-filter-section="ssd"><legend>SSD</legend><label><input type="checkbox" data-filter="ssd" value="512"><span>512GB</span></label><label><input type="checkbox" data-filter="ssd" value="1000"><span>1TB</span></label><label><input type="checkbox" data-filter="ssd" value="2000"><span>2TB</span></label></fieldset>
+        <fieldset class="filter-group filter-group--wide" data-filter-section="vga"><legend>VGA</legend><label><input type="checkbox" data-filter="vga" value="rtx-3050"><span>RTX 3050</span></label><label><input type="checkbox" data-filter="vga" value="rtx-4050"><span>RTX 4050</span></label><label><input type="checkbox" data-filter="vga" value="rtx-4060"><span>RTX 4060</span></label><label><input type="checkbox" data-filter="vga" value="rtx-5050"><span>RTX 5050</span></label><label><input type="checkbox" data-filter="vga" value="rtx-5070"><span>RTX 5070</span></label></fieldset>
+      </div>
+      <footer class="filter-dialog__footer"><button type="button" id="clear-filter">Bỏ chọn</button><button class="apply-filter" type="button" id="apply-filter"><i class="bi bi-check2"></i> Xem kết quả</button></footer>
+    </section>
+  </div>
+
+  <div class="floating-contact"><a href="#support" aria-label="Chat hỗ trợ"><i class="bi bi-robot"></i></a><a href="#" aria-label="Nhắn tin"><i class="bi bi-chat-dots-fill"></i></a></div>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/product-list.js"></script>
+</body>
+</html>
