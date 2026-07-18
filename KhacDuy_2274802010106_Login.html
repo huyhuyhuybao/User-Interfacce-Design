@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trang chủ cửa hàng thiết bị công nghệ - bài tập giao diện người dùng">
+  <title>GEARVN - Trang chủ</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  
+  <style>
+    /* Kiểu dáng cho cụm tài khoản chứa dropdown */
+    .account-dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Khung menu thả xuống ẩn mặc định */
+    .account-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 280px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      padding: 15px;
+      z-index: 999;
+      display: none;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    /* Mũi tên nhọn phía trên menu */
+    .account-dropdown::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      right: 25px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: transparent transparent #fff transparent;
+    }
+
+    /* Hiện menu khi di chuột vào */
+    .account-dropdown-wrapper:hover .account-dropdown {
+      display: block;
+    }
+
+    .account-dropdown .welcome-text, .account-dropdown .welcome-line {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    /* Định dạng link dropdown khi đã đăng nhập */
+    .account-dropdown .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 8px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .account-dropdown .dropdown-item:hover {
+      background: #f5f5f5;
+      color: #e30016;
+    }
+
+    /* Hàng chứa 2 nút Đăng nhập / Đăng ký */
+    .account-dropdown .btn-actions {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #f1f1f1;
+      padding-bottom: 12px;
+    }
+
+    .account-dropdown .btn-actions button {
+      flex: 1;
+      padding: 8px 0;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .account-dropdown .btn-login-now {
+      background: #151515;
+      color: #fff;
+      border: 1px solid #151515;
+    }
+
+    .account-dropdown .btn-login-now:hover {
+      background: #e30016;
+      border-color: #e30016;
+    }
+
+    .account-dropdown .btn-register-now {
+      background: #fff;
+      color: #151515;
+      border: 1px solid #151515;
+    }
+
+    .account-dropdown .btn-register-now:hover {
+      color: #e30016;
+      border-color: #e30016;
+    }
+
+    .account-dropdown .help-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #555;
+      font-size: 14px;
+      text-decoration: none;
+      padding: 4px 0;
+    }
+    
+    .account-dropdown .help-link:hover {
+      color: #e30016;
+    }
+
+    /* Style cấu trúc Modal dùng chung */
+    .gvn-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: all 0.3s ease;
+    }
+    .gvn-modal-overlay.active {
+      opacity: 1; pointer-events: auto;
+    }
+    .gvn-modal-box {
+      background: #fff; padding: 30px; border-radius: 8px;
+      width: 100%; max-width: 450px; position: relative;
+    }
+    .gvn-modal-title { font-size: 16px; margin-bottom: 20px; text-align: center; font-weight: bold; color: #151515; }
+    .gvn-modal-close { position: absolute; top: 10px; right: 15px; background: none; border: none; cursor: pointer; font-size: 28px; color: #999; }
+    .gvn-input-group { margin-bottom: 15px; position: relative; }
+    .gvn-input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 14px; }
+    .gvn-password-wrapper .gvn-toggle-pwd { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #666; }
+    .gvn-btn-submit { width: 100%; padding: 12px; background: #e30016; color: #fff; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 14px; text-transform: uppercase; }
+    .gvn-switch-mode, .gvn-forgot-pwd, .gvn-modal-footer { text-align: center; margin: 12px 0; font-size: 13px; }
+    .gvn-switch-mode a, .gvn-forgot-pwd a, .gvn-modal-footer a { color: #e30016; text-decoration: none; font-weight: 500; }
+    .gvn-separator { text-align: center; margin: 15px 0; position: relative; }
+    .gvn-separator::before { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: #eee; z-index: 1; }
+    .gvn-separator span { background: #fff; padding: 0 10px; position: relative; z-index: 2; color: #999; font-size: 12px; }
+    .gvn-social-actions { display: flex; gap: 10px; margin-bottom: 15px; }
+    .gvn-btn-social { flex: 1; padding: 10px; text-align: center; border: 1px solid #ddd; border-radius: 4px; text-decoration: none; color: #333; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .gvn-tab-content { display: none; }
+    .gvn-tab-content.active { display: block; }
+  </style>
+</head>
+<body id="top">
+  <div class="top-promo">
+    <div class="container top-promo__inner">
+      <strong><span>GEARVN</span> | “Pack” to School 2026</strong>
+      <a href="#promotions">Giảm lên đến <b>2.500.000đ</b><i class="bi bi-sun-fill promo-sun" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-main">
+      <!-- Đã sửa href trỏ về đúng file này để khi bấm logo không bị lỗi mất phiên -->
+      <a class="brand" href="KhacDuy_2274802010106_Login.html" aria-label="Về trang chủ">
+        <img class="brand__mark" src="assets/images/logo-mark.png" alt="">
+        <span class="brand__name">GEARVN<small>GEARVN.COM</small></span>
+      </a>
+
+      <button class="category-button" type="button" aria-label="Mở danh mục">
+        <i class="bi bi-list" aria-hidden="true"></i><span>Danh mục</span>
+      </button>
+
+      <form class="search" action="BaoHuy_2474802010133_ProductList.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Bạn cần tìm gì?" aria-label="Tìm kiếm sản phẩm" required>
+        <button type="submit" aria-label="Tìm kiếm"><i class="bi bi-search" aria-hidden="true"></i></button>
+      </form>
+
+      <nav class="quick-actions" aria-label="Tiện ích khách hàng">
+        <a href="#support"><i class="bi bi-headset" aria-hidden="true"></i><b>Hotline<small>1900.5301</small></b></a>
+        <a href="#footer"><i class="bi bi-geo-alt" aria-hidden="true"></i><b>Hệ thống<small>Showroom</small></b></a>
+        <a href="#footer"><i class="bi bi-clipboard-check" aria-hidden="true"></i><b>Tra cứu<small>đơn hàng</small></b></a>
+        <a href="#"><i class="bi bi-cart3" aria-hidden="true"></i><b>Giỏ hàng</b></a>
+        
+        <!-- THÊM ID gvnAccountWrapper BỌC CỤM DROPDOWN ĐỂ JS THAY ĐỔI GIAO DIỆN -->
+        <div class="account-dropdown-wrapper" id="gvnAccountWrapper">
+          <a class="login" href="#" id="openLoginBtn"><i class="bi bi-person" aria-hidden="true"></i><b>Đăng nhập</b></a>
+          
+          <div class="account-dropdown">
+            <div class="welcome-text">
+              <i class="bi bi-hand-thumbs-up"></i> Xin chào, vui lòng đăng nhập
+            </div>
+            <div class="btn-actions">
+              <button type="button" class="btn-login-now" id="dropdownLoginBtn">Đăng nhập</button>
+              <button type="button" class="btn-register-now" id="dropdownRegisterBtn">Đăng ký</button>
+            </div>
+            <a href="#support" class="help-link">
+              <i class="bi bi-question-circle"></i> Trợ giúp
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="service-nav" aria-label="Dịch vụ">
+    <div class="container service-nav__inner">
+      <a href="#"><i class="bi bi-tag" aria-hidden="true"></i><span>BUILD PC tặng màn hình 240Hz</span></a>
+      <a href="#"><i class="bi bi-arrow-repeat" aria-hidden="true"></i><span>Thu cũ</span></a>
+      <a href="#news"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Tin tức</span></a>
+      <a href="#"><i class="bi bi-tools" aria-hidden="true"></i><span>Dịch vụ kỹ thuật tại nhà</span></a>
+      <a href="#"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Thu cũ đổi mới</span></a>
+      <a href="#"><i class="bi bi-shield-check" aria-hidden="true"></i><span>Tra cứu bảo hành</span></a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero-section section-space">
+      <div class="container hero-layout">
+        <aside class="category-menu" aria-label="Danh mục sản phẩm">
+          <a href="BaoHuy_2474802010133_ProductList.html"><i class="bi bi-laptop menu-icon" aria-hidden="true"></i><span>Laptop</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="BaoHuy_2474802010133_ProductList.html"><i class="bi bi-laptop menu-icon" aria-hidden="true"></i><span>Laptop Gaming</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#pc"><i class="bi bi-pc-display-horizontal menu-icon" aria-hidden="true"></i><span>PC GVN</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-cpu menu-icon" aria-hidden="true"></i><span>Main, CPU, VGA</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-pc menu-icon" aria-hidden="true"></i><span>Case, Nguồn, Tản</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-device-ssd menu-icon" aria-hidden="true"></i><span>Ổ cứng, RAM, Thẻ nhớ</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-webcam menu-icon" aria-hidden="true"></i><span>Loa, Micro, Webcam</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#monitor"><i class="bi bi-display menu-icon" aria-hidden="true"></i><span>Màn hình</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#keyboard"><i class="bi bi-keyboard menu-icon" aria-hidden="true"></i><span>Bàn phím</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#mouse"><i class="bi bi-mouse menu-icon" aria-hidden="true"></i><span>Chuột + Lót chuột</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-headset menu-icon" aria-hidden="true"></i><span>Tai nghe</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-person-workspace menu-icon" aria-hidden="true"></i><span>Ghế - Bàn</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-router menu-icon" aria-hidden="true"></i><span>Phần mềm, mạng</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-controller menu-icon" aria-hidden="true"></i><span>Handheld, Console</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-usb-plug menu-icon" aria-hidden="true"></i><span>Phụ kiện (Hub, sạc, cáp...)</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+          <a href="#"><i class="bi bi-gift menu-icon" aria-hidden="true"></i><span>Dịch vụ và thông tin khác</span><i class="bi bi-chevron-right menu-arrow" aria-hidden="true"></i></a>
+        </aside>
+
+        <div class="hero-banners">
+          <a class="hero-main" href="#promotions"><img src="assets/images/banner_main.webp" alt="Khuyến mãi điểm căng đỉnh quà căng nhìn"></a>
+          <a href="#"><img src="assets/images/right_1.webp" alt="Build PC tặng màn hình gaming"></a>
+          <a href="#keyboard"><img src="assets/images/right_2.webp" alt="Bàn phím cơ giảm giá"></a>
+          <a href="BaoHuy_2474802010133_ProductList.html"><img src="assets/images/bottom_1.webp" alt="Laptop Gaming"></a>
+          <a href="#"><img src="assets/images/bottom_2.webp" alt="Laptop Office"></a>
+          <a href="#pc"><img src="assets/images/bottom_3.webp" alt="PC Gaming"></a>
+        </div>
+      </div>
+
+      <div class="container mini-promos">
+        <a href="#"><img src="assets/images/flash_sale.webp" alt="Flash Sale"></a>
+        <a href="#monitor"><img src="assets/images/monitor.webp" alt="Màn hình chính hãng"></a>
+        <a href="#mouse"><img src="assets/images/gaming_mouse.webp" alt="Gaming mouse"></a>
+        <a href="#pc"><img src="assets/images/case.webp" alt="PC RTX 5090"></a>
+      </div>
+    </section>
+
+    <section class="container white-panel viewed-section">
+      <h2 class="panel-title">Sản phẩm đã xem</h2>
+      <div class="viewed-list">
+        <article class="viewed-card">
+          <img src="assets/images/razer.webp" alt="Chuột Razer Viper V3 Pro">
+          <div><h3>Chuột Razer không dây Viper V3 Pro Trắng</h3><del>4.790.000đ</del><p>3.690.000đ <span>-23%</span></p></div>
+        </article>
+        <article class="viewed-card">
+          <img src="assets/images/propanel.webp" alt="Laptop gaming Acer Nitro">
+          <div><h3>Laptop gaming Acer Nitro ProPanel ANV15</h3><del>29.990.000đ</del><p>27.890.000đ <span>-7%</span></p></div>
+        </article>
+        <article class="viewed-card">
+          <img src="assets/images/akko_VN.webp" alt="Bàn phím AKKO 5075B">
+          <div><h3>Bàn phím AKKO 5075B Plus Red World Tour</h3><del>2.000.000đ</del><p>1.490.000đ <span>-26%</span></p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container double-promo section-space">
+      <a href="#pc"><img src="assets/images/build_1.webp" alt="Tự build PC theo ý bạn"></a>
+      <a href="#"><img src="assets/images/chair.png" alt="Ghế bán hạ giá"></a>
+    </section>
+
+    <section class="container product-section" id="pc">
+      <div class="section-heading">
+        <h2>PC bán chạy <span><i class="bi bi-credit-card-2-front" aria-hidden="true"></i> Trả góp 0%</span></h2>
+        <div class="brands">PC I5  PC I7  PC I9  PC R5  PC R7  PC R9</div>
+        <a href="#">Xem tất cả</a>
+      </div>
+      <div class="product-grid">
+        <article class="product-card">
+          <img src="assets/images/pc1.webp" alt="PC GVN Intel i5">
+          <h3>PC GVN Intel i5-12400F / VGA RTX 5060 Ti</h3>
+          <del>27.990.000đ</del><p class="price">23.791.500đ <span>-15%</span></p>
+          <ul class="product-specs">
+            <li><i class="bi bi-cpu" aria-hidden="true"></i><span>Intel Core i5-12400F</span></li>
+            <li><i class="bi bi-memory" aria-hidden="true"></i><span>16GB RAM, 512GB SSD</span></li>
+            <li><i class="bi bi-gpu-card" aria-hidden="true"></i><span>NVIDIA GEFORCE RTX 5060 Ti</span></li>
+          </ul>
+          <small class="rating"><i class="bi bi-star-fill" aria-hidden="true"></i> 0.0 (0 đánh giá)</small>
+        </article>
+        <article class="product-card">
+          <img src="assets/images/pc2.jpg" alt="PC GVN Intel i7">
+          <h3>PC GVN Intel i7-14700F / VGA RTX 5060</h3>
+          <del>36.320.000đ</del><p class="price">32.688.000đ <span>-10%</span></p>
+          <ul class="product-specs">
+            <li><i class="bi bi-cpu" aria-hidden="true"></i><span>Intel Core i7-14700F</span></li>
+            <li><i class="bi bi-memory" aria-hidden="true"></i><span>16GB RAM, 1TB SSD</span></li>
+            <li><i class="bi bi-gpu-card" aria-hidden="true"></i><span>NVIDIA GEFORCE RTX 5060</span></li>
+          </ul>
+          <small class="rating"><i class="bi bi-star-fill" aria-hidden="true"></i> 0.0 (0 đánh giá)</small>
+        </article>
+        <article class="product-card">
+          <img src="assets/images/pc3.jpg" alt="PC AMD Ryzen 7">
+          <h3>PC GVN AMD Ryzen 7 7800X3D / VGA RTX 5070</h3>
+          <del>53.620.000đ</del><p class="price">48.258.000đ <span>-10%</span></p>
+          <ul class="product-specs">
+            <li><i class="bi bi-cpu" aria-hidden="true"></i><span>AMD Ryzen 7 7800X3D</span></li>
+            <li><i class="bi bi-memory" aria-hidden="true"></i><span>32GB RAM, 1TB SSD</span></li>
+            <li><i class="bi bi-gpu-card" aria-hidden="true"></i><span>NVIDIA GEFORCE RTX 5070</span></li>
+          </ul>
+          <small class="rating"><i class="bi bi-star-fill" aria-hidden="true"></i> 0.0 (0 đánh giá)</small>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="container footer-grid">
+      <div><h3>VỀ GEARVN</h3><a href="#">Giới thiệu</a><a href="#">Tuyển dụng</a><a href="#">Liên hệ</a></div>
+      <div><h3>CHÍNH SÁCH</h3><a href="#">Chính sách bảo hành</a><a href="#">Chính sách giao hàng</a><a href="#">Chính sách bảo mật</a></div>
+      <div><h3>THÔNG TIN</h3><a href="#">Hệ thống cửa hàng</a><a href="#">Hướng dẫn mua hàng</a><a href="#">Hướng dẫn thanh toán</a><a href="#">Hướng dẫn trả góp</a><a href="#">Tra cứu địa chỉ bảo hành</a><a href="#">Build PC</a></div>
+      <div id="support"><h3>TỔNG ĐÀI HỖ TRỢ</h3><p><i class="bi bi-telephone" aria-hidden="true"></i> Mua hàng: <a href="tel:19005301">1900.5301</a></p><p><i class="bi bi-shield-check" aria-hidden="true"></i> Bảo hành: <a href="tel:19005325">1900.5325</a></p><p><i class="bi bi-chat-left-text" aria-hidden="true"></i> Khiếu nại: <a href="tel:18006173">1800.6173</a></p><p><i class="bi bi-envelope" aria-hidden="true"></i> Email: <a href="mailto:cskh@gearvn.com">cskh@gearvn.com</a></p></div>
+      <div class="footer-payment"><h3>ĐƠN VỊ VẬN CHUYỂN</h3><div class="logo-row"><img src="assets/images/ghn.webp" alt="GHN"><img src="assets/images/ém.webp" alt="EMS"><img src="assets/images/gvn.webp" alt="GVN"></div><h3>CÁCH THỨC THANH TOÁN</h3><div class="pay-row"><img src="assets/images/pay1.webp" alt=""><img src="assets/images/pay_2.webp" alt=""><img src="assets/images/pay_3.webp" alt=""><img src="assets/images/pay_4.webp" alt=""><img src="assets/images/pay_5.webp" alt=""><img src="assets/images/pay_6.webp" alt=""><img src="assets/images/pay_7.webp" alt=""><img src="assets/images/pay_8.webp" alt=""></div></div>
+    </div>
+    <div class="container social-row">
+      <strong>KẾT NỐI VỚI CHÚNG TÔI</strong>
+      <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a><a href="#" aria-label="TikTok"><i class="bi bi-tiktok" aria-hidden="true"></i></a><a href="#" aria-label="YouTube"><i class="bi bi-youtube" aria-hidden="true"></i></a><a href="#" aria-label="Cộng đồng"><i class="bi bi-people-fill" aria-hidden="true"></i></a>
+      <img class="certification" src="assets/images/tick.webp" alt="Đã thông báo Bộ Công Thương">
+    </div>
+  </footer>
+
+  <!-- ================= MODAL ĐĂNG NHẬP / ĐĂNG KÝ ================= -->
+  <div class="gvn-modal-overlay" id="gvnAuthModal">
+    <div class="gvn-modal-box">
+      <button class="gvn-modal-close" id="gvnCloseBtn" type="button">&times;</button>
+      
+      <!-- TAB ĐĂNG NHẬP -->
+      <div id="gvnLoginTab" class="gvn-tab-content active">
+        <h2 class="gvn-modal-title">ĐĂNG NHẬP HOẶC TẠO TÀI KHOẢN</h2>
+        <div class="gvn-switch-mode"><a href="#">Đăng nhập bằng số điện thoại</a></div>
+        
+        <form id="gvnLoginForm">
+          <div class="gvn-input-group">
+            <input type="email" placeholder="Email" required>
+          </div>
+          <div class="gvn-input-group gvn-password-wrapper">
+            <input type="password" placeholder="Mật khẩu" class="gvn-password-field" required>
+            <i class="bi bi-eye gvn-toggle-pwd"></i>
+          </div>
+          <div class="gvn-forgot-pwd"><a href="#">Quên mật khẩu email?</a></div>
+          <button type="submit" class="gvn-btn-submit">ĐĂNG NHẬP</button>
+        </form>
+        
+        <div class="gvn-separator"><span>hoặc đăng nhập bằng</span></div>
+        <div class="gvn-social-actions">
+          <a href="#" class="gvn-btn-social"><i class="bi bi-google"></i> Google</a>
+          <a href="#" class="gvn-btn-social"><i class="bi bi-facebook"></i> Facebook</a>
+        </div>
+        <div class="gvn-modal-footer">Bạn chưa có tài khoản? <a href="#" id="gvnGoToRegister">Đăng ký ngay!</a></div>
+      </div>
+
+      <!-- TAB ĐĂNG KÝ -->
+      <div id="gvnRegisterTab" class="gvn-tab-content">
+        <h2 class="gvn-modal-title">ĐĂNG KÝ TÀI KHOẢN GEARVN</h2>
+        <div class="gvn-switch-mode"><a href="#">Đăng ký bằng số điện thoại</a></div>
+        
+        <form id="gvnRegisterForm">
+          <div class="gvn-input-group"><input type="email" placeholder="Email" required></div>
+          <div class="gvn-input-group"><input type="text" placeholder="Họ" required></div>
+          <div class="gvn-input-group"><input type="text" placeholder="Tên" required></div>
+          <div class="gvn-input-group gvn-password-wrapper">
+            <input type="password" placeholder="Mật khẩu" class="gvn-password-field" required>
+            <i class="bi bi-eye gvn-toggle-pwd"></i>
+          </div>
+          <button type="submit" class="gvn-btn-submit">ĐĂNG KÝ</button>
+        </form>
+        <div class="gvn-modal-footer">Đã có tài khoản? <a href="#" id="gvnGoToLogin">Đăng nhập ngay!</a></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/search.js"></script>
+  
+  <!-- ================= ĐOẠN JS ĐIỀU KHIỂN ĐĂNG NHẬP / ĐĂNG XUẤT VÀ LINK ================= -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const modal = document.getElementById("gvnAuthModal");
+      const closeBtn = document.getElementById("gvnCloseBtn");
+      const loginForm = document.getElementById("gvnLoginForm");
+      const accountWrapper = document.getElementById("gvnAccountWrapper");
+      
+      const loginTab = document.getElementById("gvnLoginTab");
+      const registerTab = document.getElementById("gvnRegisterTab");
+      const goToRegister = document.getElementById("gvnGoToRegister");
+      const goToLogin = document.getElementById("gvnGoToLogin");
+
+      // Khai báo giao diện HTML Đã đăng nhập (ĐÃ SỬA LINK ĐƠN HÀNG)
+      const loggedInHTML = `
+        <a class="login" href="KhacDuy_2274802010106_Account.html"><i class="bi bi-person" aria-hidden="true"></i><b>Xin chào<small>Khắc Duy</small></b></a>
+        <div class="account-dropdown">
+          <div class="welcome-line"><i class="bi bi-check-circle-fill" style="color: green;"></i> Khắc Duy (Đã đăng nhập)</div>
+          <a href="KhacDuy_2274802010106_Account.html" class="dropdown-item"><i class="bi bi-person-bounding-box"></i> Trang cá nhân</a>
+          <a href="KhacDuy_2274802010106_Order.html" class="dropdown-item"><i class="bi bi-clipboard-check"></i> Đơn hàng của tôi</a>
+          <a href="#" class="dropdown-item id-logout-trigger" style="color: #e30016; font-weight: bold;">
+            <i class="bi bi-box-arrow-right"></i> Đăng xuất
+          </a>
+        </div>
+      `;
+
+      // Khai báo giao diện HTML Chưa đăng nhập mặc định
+      const loggedOutHTML = `
+        <a class="login" href="#" id="openLoginBtn"><i class="bi bi-person" aria-hidden="true"></i><b>Đăng nhập</b></a>
+        <div class="account-dropdown">
+          <div class="welcome-text"><i class="bi bi-hand-thumbs-up"></i> Xin chào, vui lòng đăng nhập</div>
+          <div class="btn-actions">
+            <button type="button" class="btn-login-now" id="dropdownLoginBtn">Đăng nhập</button>
+            <button type="button" class="btn-register-now" id="dropdownRegisterBtn">Đăng ký</button>
+          </div>
+          <a href="#support" class="help-link"><i class="bi bi-question-circle"></i> Trợ giúp</a>
+        </div>
+      `;
+
+      // Hàm cốt lõi: Kiểm tra trạng thái và cập nhật Header
+      function renderHeader() {
+        const status = localStorage.getItem("gvn_logged_in");
+        if (status === "true") {
+          accountWrapper.innerHTML = loggedInHTML;
+        } else {
+          accountWrapper.innerHTML = loggedOutHTML;
+          bindModalEvents(); // Gắn lại sự kiện click mở modal cho các nút đăng nhập mới tạo lại
+        }
+      }
+
+      function bindModalEvents() {
+        const openLoginBtn = document.getElementById("openLoginBtn");
+        const dropdownLoginBtn = document.getElementById("dropdownLoginBtn");
+        const dropdownRegisterBtn = document.getElementById("dropdownRegisterBtn");
+
+        const openModalFn = (e) => {
+          e.preventDefault();
+          modal.classList.add("active");
+          showTab("login");
+        };
+
+        if(openLoginBtn) openLoginBtn.addEventListener("click", openModalFn);
+        if(dropdownLoginBtn) dropdownLoginBtn.addEventListener("click", openModalFn);
+        if(dropdownRegisterBtn) {
+          dropdownRegisterBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            modal.classList.add("active");
+            showTab("register");
+          });
+        }
+      }
+
+      function showTab(type) {
+        if(type === "login") {
+          loginTab.classList.add("active");
+          registerTab.classList.remove("active");
+        } else {
+          registerTab.classList.add("active");
+          loginTab.classList.remove("active");
+        }
+      }
+
+      // Xử lý chuyển đổi Tab ngay trong Modal
+      if(goToRegister) goToRegister.addEventListener("click", (e) => { e.preventDefault(); showTab("register"); });
+      if(goToLogin) goToLogin.addEventListener("click", (e) => { e.preventDefault(); showTab("login"); });
+      if(closeBtn) closeBtn.addEventListener("click", () => modal.classList.remove("active"));
+
+      // Ẩn/hiện password
+      document.querySelectorAll(".gvn-toggle-pwd").forEach(icon => {
+        icon.addEventListener("click", function() {
+          const input = this.parentElement.querySelector(".gvn-password-field");
+          if(input.type === "password") {
+            input.type = "text";
+            this.classList.replace("bi-eye", "bi-eye-slash");
+          } else {
+            input.type = "password";
+            this.classList.replace("bi-eye-slash", "bi-eye");
+          }
+        });
+      });
+
+      // BẮT SỰ KIỆN SUBMIT FORM ĐĂNG NHẬP
+      if (loginForm) {
+        loginForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          localStorage.setItem("gvn_logged_in", "true"); // Lưu trạng thái đăng nhập vào máy
+          modal.classList.remove("active"); // Ẩn modal đăng nhập đi
+          window.location.href = "KhacDuy_2274802010106_Account.html"; // Chuyển thẳng sang file Account
+        });
+      }
+
+      // LẮNG NGHE SỰ KIỆN ĐĂNG XUẤT
+      document.addEventListener("click", function (e) {
+        if (e.target.closest(".id-logout-trigger")) {
+          e.preventDefault();
+          localStorage.removeItem("gvn_logged_in"); // Xóa trạng thái đăng nhập
+          renderHeader(); // Vẽ lại Header về trạng thái ban đầu
+        }
+      });
+
+      // Chạy khởi tạo giao diện ngay khi load trang xong
+      renderHeader();
+    });
+  </script>
+</body>
+</html>

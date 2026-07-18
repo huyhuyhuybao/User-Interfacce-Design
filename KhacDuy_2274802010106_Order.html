@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEARVN - Quản lý đơn hàng</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  
+  <style>
+    /* Copy lại toàn bộ CSS cũ của bạn ở đây (Tôi đã viết gộp cho bạn) */
+    .account-dropdown-wrapper { position: relative; display: inline-block; }
+    .account-dropdown { position: absolute; top: 100%; right: 0; width: 250px; background: #fff; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); padding: 10px 0; z-index: 999; display: none; margin-top: 10px; text-align: left; }
+    .account-dropdown::before { content: ""; position: absolute; bottom: 100%; right: 25px; border-width: 8px; border-style: solid; border-color: transparent transparent #fff transparent; }
+    .account-dropdown-wrapper:hover .account-dropdown { display: block; }
+    .account-dropdown .dropdown-item { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s; }
+    .account-dropdown .dropdown-item:hover { background: #f8f9fa; color: #e30016; }
+    .account-dropdown .dropdown-item i { font-size: 16px; color: #333; }
+    .account-dropdown .dropdown-item:hover i { color: #e30016; }
+    .account-dropdown .dropdown-item.welcome-line { border-bottom: 1px solid #eee; pointer-events: none; font-weight: 500; padding-bottom: 12px; margin-bottom: 6px; }
+
+    .account-page-container { max-width: 1200px; margin: 30px auto; padding: 0 15px; display: flex; gap: 30px; position: relative; box-sizing: border-box; }
+    .account-sidebar { flex: 0 0 260px; background: #fff; border: 1px solid #e1e1e1; border-radius: 4px; padding: 20px 0; align-self: flex-start; }
+    .user-avatar-zone { display: flex; align-items: center; gap: 15px; padding: 0 20px 20px 20px; border-bottom: 1px solid #eee; }
+    .user-avatar-zone i { font-size: 36px; color: #888; }
+    .user-avatar-zone .username { font-size: 16px; font-weight: bold; color: #333; }
+    .account-menu { list-style: none; padding: 15px 0 0 0; margin: 0; }
+    .account-menu li a { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s; }
+    .account-menu li.active a { color: #e30016; font-weight: bold; }
+    .account-menu li a:hover { background: #f9f9f9; color: #e30016; }
+    .account-menu li a i { font-size: 16px; width: 20px; text-align: center; color: #555; }
+    .account-menu li.active a i { color: #e30016; }
+
+    .account-main-content { flex: 1; background: #fff; border: 1px solid #e1e1e1; border-radius: 4px; padding: 30px; }
+    .account-main-content h1 { font-size: 20px; font-weight: 500; margin-top: 0; margin-bottom: 30px; color: #333; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+
+    .content-section { display: none; }
+    .content-section.active { display: block; }
+    .order-tabs-header { display: flex; border-bottom: 1px solid #eee; margin-bottom: 20px; gap: 30px; }
+    .order-tab-item { padding: 10px 0; font-weight: bold; color: #333; cursor: pointer; position: relative; font-size: 14px; }
+    .order-tab-item.active { color: #e30016; }
+    .order-tab-item.active::after { content: ""; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: #e30016; }
+    .order-search-box { display: flex; align-items: center; border: 1px solid #eee; padding: 10px 15px; border-radius: 4px; margin-bottom: 20px; }
+    .order-search-box input { border: none; outline: none; flex: 1; padding-left: 10px; font-size: 14px; }
+    .order-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .order-table th { text-align: left; padding: 12px 0; border-bottom: 1px solid #eee; color: #666; font-weight: normal; }
+    .order-table td { padding: 15px 0; border-bottom: 1px solid #f5f5f5; color: #333; }
+    .order-table tr:last-child td { border-bottom: none; }
+    .clickable-order { cursor: pointer; color: #333; font-weight: bold; transition: color 0.2s; text-decoration: none; display: block; }
+    .clickable-order:hover { color: #e30016; text-decoration: underline; }
+
+    /* Chi tiết đơn hàng */
+    .order-detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+    .order-detail-header h2 { font-size: 22px; margin: 0; color: #333; }
+    .order-detail-header .order-date { font-size: 14px; color: #333; text-align: right; }
+    .order-detail-header .order-date span { display: block; font-weight: bold; margin-top: 5px; }
+    .detail-info-row { display: flex; gap: 20px; margin-bottom: 20px; }
+    .detail-info-box { flex: 1; border: 1px solid #eee; border-radius: 4px; padding: 20px; }
+    .detail-info-box h4 { font-size: 14px; margin: 0 0 15px 0; display: flex; align-items: center; gap: 8px; color: #333; }
+    .detail-info-box h4 i { color: #f60; }
+    .detail-info-box p { margin: 5px 0; font-size: 14px; color: #333; line-height: 1.6; }
+    .detail-info-box .label-gray { color: #888; }
+    .detail-product-box { border: 1px solid #eee; border-radius: 4px; padding: 20px; margin-bottom: 30px; }
+    .detail-product-box h4 { font-size: 14px; margin: 0 0 15px 0; display: flex; align-items: center; gap: 8px; color: #333; }
+    .detail-product-box h4 i { color: #f60; }
+    .detail-product-box .price-row { display: flex; justify-content: flex-end; gap: 40px; padding: 8px 0; font-size: 14px; }
+    .detail-product-box .price-row .label { color: #333; }
+    .detail-product-box .price-row .value { min-width: 120px; text-align: right; color: #333; }
+    .detail-product-box .total-row { display: flex; justify-content: flex-end; gap: 40px; padding: 15px 0 5px 0; border-top: 1px solid #eee; margin-top: 10px; font-size: 15px; font-weight: bold; }
+    .detail-product-box .total-row .value { color: #333; }
+    .detail-product-box .paid-row { display: flex; justify-content: flex-end; gap: 40px; font-size: 14px; color: #e30016; margin-top: 5px; }
+    .detail-product-box .paid-row .value { font-weight: bold; }
+    .btn-back-list { background: #007bff; color: #fff; border: none; padding: 12px 30px; border-radius: 4px; font-size: 14px; cursor: pointer; transition: background 0.2s; }
+    .btn-back-list:hover { background: #0056b3; }
+
+    .side-banner-left, .side-banner-right { position: absolute; top: 0; width: 120px; z-index: 10; }
+    .side-banner-left { left: -140px; }
+    .side-banner-right { right: -140px; }
+    .side-banner-left img, .side-banner-right img { width: 100%; height: auto; display: block; border-radius: 4px; }
+
+    @media (max-width: 1480px) { .side-banner-left, .side-banner-right { display: none; } }
+    @media (max-width: 768px) { .account-page-container { flex-direction: column; } .account-sidebar { width: 100%; } .detail-info-row { flex-direction: column; } }
+  </style>
+</head>
+<body id="top">
+
+  <!-- Top Promo -->
+  <div class="top-promo">
+    <div class="container top-promo__inner">
+      <strong><span>GEARVN</span> | “Pack” to School 2026</strong>
+      <a href="#promotions">Giảm lên đến <b>2.500.000đ</b><i class="bi bi-sun-fill promo-sun" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-main">
+      <a class="brand" href="KhacDuy_2274802010106_Login.html" aria-label="Về trang chủ">
+        <img class="brand__mark" src="assets/images/logo-mark.png" alt="">
+        <span class="brand__name">GEARVN<small>GEARVN.COM</small></span>
+      </a>
+      <button class="category-button" type="button" aria-label="Mở danh mục">
+        <i class="bi bi-list" aria-hidden="true"></i><span>Danh mục</span>
+      </button>
+      <form class="search" action="#" method="get" role="search">
+        <input type="search" name="q" placeholder="Bạn cần tìm gì?" aria-label="Tìm kiếm sản phẩm" required>
+        <button type="submit" aria-label="Tìm kiếm"><i class="bi bi-search" aria-hidden="true"></i></button>
+      </form>
+      <nav class="quick-actions" aria-label="Tiện ích khách hàng">
+        <a href="#support"><i class="bi bi-headset" aria-hidden="true"></i><b>Hotline<small>1900.5301</small></b></a>
+        <a href="#footer"><i class="bi bi-geo-alt" aria-hidden="true"></i><b>Hệ thống<small>Showroom</small></b></a>
+        <a href="#footer"><i class="bi bi-clipboard-check" aria-hidden="true"></i><b>Tra cứu<small>đơn hàng</small></b></a>
+        <a href="#"><i class="bi bi-cart3" aria-hidden="true"></i><b>Giỏ hàng</b></a>
+        
+        <div class="account-dropdown-wrapper">
+          <a class="login" href="#" id="userAccountBtn"><i class="bi bi-person" aria-hidden="true"></i><b>Xin chào<small>Khắc Duy</small></b></a>
+          <div class="account-dropdown">
+            <div class="dropdown-item welcome-line">
+              <i class="bi bi-check-circle-fill" style="color: #28a745;"></i> Khắc Duy (Đã đăng nhập)
+            </div>
+            <a href="KhacDuy_2274802010106_Account.html" class="dropdown-item">Trang cá nhân</a>
+            <a href="#order-list" class="dropdown-item" style="background: #f8f9fa; color: #e30016; font-weight: 500;">
+              <i class="bi bi-clipboard-check" style="color: #ccc;"></i> Đơn hàng của tôi
+            </a>
+            <a href="KhacDuy_2274802010106_Login.html" class="dropdown-item" style="color: #e30016;">
+              <i class="bi bi-box-arrow-right" style="color: #e30016;"></i> Đăng xuất
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Service Nav -->
+  <nav class="service-nav" aria-label="Dịch vụ">
+    <div class="container service-nav__inner">
+      <a href="#"><i class="bi bi-tag" aria-hidden="true"></i><span>BUILD PC tặng màn hình 240Hz</span></a>
+      <a href="#"><i class="bi bi-arrow-repeat" aria-hidden="true"></i><span>Thu cũ</span></a>
+      <a href="#news"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Tin tức</span></a>
+      <a href="#"><i class="bi bi-tools" aria-hidden="true"></i><span>Dịch vụ kỹ thuật tại nhà</span></a>
+      <a href="#"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Thu cũ đổi mới</span></a>
+      <a href="#"><i class="bi bi-shield-check" aria-hidden="true"></i><span>Tra cứu bảo hành</span></a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="account-page-container">
+    <aside class="side-banner-left">
+      <a href="#"><img src="assets/images/smallbanner1.webp" alt="Pack to School Left Banner"></a>
+    </aside>
+
+    <section class="account-sidebar">
+      <div class="user-avatar-zone">
+        <i class="bi bi-person-circle"></i>
+        <span class="username">Khắc Duy</span>
+      </div>
+      <ul class="account-menu">
+        <li>
+          <a href="KhacDuy_2274802010106_Account.html"><i class="bi bi-person-fill"></i> Thông tin tài khoản</a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-geo-alt"></i> Số địa chỉ</a>
+        </li>
+        <li class="active">
+          <a href="KhacDuy_2274802010106_Order.html"><i class="bi bi-clipboard-check"></i> Quản lý đơn hàng</a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-eye"></i> Sản phẩm đã xem</a>
+        </li>
+        <li>
+          <a href="KhacDuy_2274802010106_Login.html" class="sidebar-logout-btn"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="account-main-content">
+      
+      <!-- Danh sách -->
+      <div id="order-list" class="content-section active">
+        <h1>Quản lý đơn hàng</h1>
+        <div class="order-tabs-header">
+          <div class="order-tab-item active">TẤT CẢ</div>
+          <div class="order-tab-item">MỚI</div>
+          <div class="order-tab-item">ĐANG XỬ LÝ</div>
+          <div class="order-tab-item">ĐANG VẬN CHUYỂN</div>
+          <div class="order-tab-item">HOÀN THÀNH</div>
+          <div class="order-tab-item">HUỶ (3)</div>
+        </div>
+        <div class="order-search-box">
+          <i class="bi bi-search"></i>
+          <input type="text" placeholder="Tìm đơn hàng theo Mã đơn hàng">
+          <span style="color: #e30016; margin-left: 10px; cursor: pointer;">Tìm đơn hàng</span>
+        </div>
+
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>Mã đơn hàng</th>
+              <th>Ngày đặt</th>
+              <th>Trạng thái</th>
+              <th>Tổng tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- Đã đổi href thành onclick để chặn nhảy trang, giữ nguyên vị trí -->
+              <td><a href="javascript:void(0)" onclick="showOrder('detail-225338')" class="clickable-order">#225338</a></td>
+              <td>Thg 3 10, 2025</td>
+              <td>Huỷ</td>
+              <td>1,705,000đ</td>
+            </tr>
+            <tr>
+              <td><a href="javascript:void(0)" onclick="showOrder('detail-223319')" class="clickable-order">#223319</a></td>
+              <td>Thg 2 15, 2025</td>
+              <td>Huỷ</td>
+              <td>415,000đ</td>
+            </tr>
+            <tr>
+              <td><a href="javascript:void(0)" onclick="showOrder('detail-218626')" class="clickable-order">#218626</a></td>
+              <td>Thg 1 10, 2025</td>
+              <td>Huỷ</td>
+              <td>3,403,000đ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Chi tiết 225338 -->
+      <div id="detail-225338" class="content-section">
+        <div class="order-detail-header">
+          <h2>Chi tiết đơn hàng #225338 -</h2>
+          <div class="order-date">Đặt lúc: 19:54 Thứ Hai,<br><span>10.03.2025</span></div>
+        </div>
+        <div class="detail-info-row">
+          <div class="detail-info-box"><h4><i class="bi bi-file-text-fill"></i> Thông tin khách hàng</h4><p><span class="label-gray">Người nhận:</span> Khắc Duy - 0981178753</p><p><span class="label-gray">Địa chỉ nhận hàng:</span> 45/3, đường 19, kp4</p></div>
+          <div class="detail-info-box"><h4><i class="bi bi-credit-card-fill" style="color: #f60;"></i> Hình thức thanh toán</h4></div>
+        </div>
+        <div class="detail-product-box">
+          <h4><i class="bi bi-box-seam-fill"></i> Thông tin sản phẩm</h4>
+          <div class="price-row"><span class="label">Giá tạm tính:</span><span class="value">1,680,000đ</span></div>
+          <div class="price-row"><span class="label">Phí vận chuyển:</span><span class="value">25,000đ</span></div>
+          <div class="total-row"><span class="label">Tổng tiền:</span><span class="value">1,705,000đ</span></div>
+          <div class="paid-row"><span class="label"><i class="bi bi-check-circle-fill" style="color: #28a745;"></i> Số tiền đã thanh toán:</span><span class="value" style="color: #e30016;">0đ</span></div>
+        </div>
+        <a href="javascript:void(0)" onclick="backToList()" class="btn-back-list">Quay lại danh sách đơn hàng</a>
+      </div>
+
+      <!-- Chi tiết 223319 -->
+      <div id="detail-223319" class="content-section">
+        <div class="order-detail-header">
+          <h2>Chi tiết đơn hàng #223319 -</h2>
+          <div class="order-date">Đặt lúc: 22:07 Thứ Bảy,<br><span>15.02.2025</span></div>
+        </div>
+        <div class="detail-info-row">
+          <div class="detail-info-box"><h4><i class="bi bi-file-text-fill"></i> Thông tin khách hàng</h4><p><span class="label-gray">Người nhận:</span> Khắc Duy - 0981178753</p><p><span class="label-gray">Địa chỉ nhận hàng:</span> 45/3, đường 19, kp4</p></div>
+          <div class="detail-info-box"><h4><i class="bi bi-credit-card-fill" style="color: #f60;"></i> Hình thức thanh toán</h4></div>
+        </div>
+        <div class="detail-product-box">
+          <h4><i class="bi bi-box-seam-fill"></i> Thông tin sản phẩm</h4>
+          <div class="price-row"><span class="label">Giá tạm tính:</span><span class="value">390,000đ</span></div>
+          <div class="price-row"><span class="label">Phí vận chuyển:</span><span class="value">25,000đ</span></div>
+          <div class="total-row"><span class="label">Tổng tiền:</span><span class="value">415,000đ</span></div>
+          <div class="paid-row"><span class="label"><i class="bi bi-check-circle-fill" style="color: #28a745;"></i> Số tiền đã thanh toán:</span><span class="value" style="color: #e30016;">0đ</span></div>
+        </div>
+        <a href="javascript:void(0)" onclick="backToList()" class="btn-back-list">Quay lại danh sách đơn hàng</a>
+      </div>
+
+      <!-- Chi tiết 218626 -->
+      <div id="detail-218626" class="content-section">
+        <div class="order-detail-header">
+          <h2>Chi tiết đơn hàng #218626 -</h2>
+          <div class="order-date">Đặt lúc: 20:39 Thứ Sáu,<br><span>10.01.2025</span></div>
+        </div>
+        <div class="detail-info-row">
+          <div class="detail-info-box"><h4><i class="bi bi-file-text-fill"></i> Thông tin khách hàng</h4><p><span class="label-gray">Người nhận:</span> Khắc Duy - 0981178753</p><p><span class="label-gray">Địa chỉ nhận hàng:</span> 45/3, đường 19, kp4</p></div>
+          <div class="detail-info-box"><h4><i class="bi bi-credit-card-fill" style="color: #f60;"></i> Hình thức thanh toán</h4></div>
+        </div>
+        <div class="detail-product-box">
+          <h4><i class="bi bi-box-seam-fill"></i> Thông tin sản phẩm</h4>
+          <div class="price-row"><span class="label">Giá tạm tính:</span><span class="value">3,378,000đ</span></div>
+          <div class="price-row"><span class="label">Phí vận chuyển:</span><span class="value">25,000đ</span></div>
+          <div class="total-row"><span class="label">Tổng tiền:</span><span class="value">3,403,000đ</span></div>
+          <div class="paid-row"><span class="label"><i class="bi bi-check-circle-fill" style="color: #28a745;"></i> Số tiền đã thanh toán:</span><span class="value" style="color: #e30016;">0đ</span></div>
+        </div>
+        <a href="javascript:void(0)" onclick="backToList()" class="btn-back-list">Quay lại danh sách đơn hàng</a>
+      </div>
+
+    </section>
+
+    <aside class="side-banner-right">
+      <a href="#"><img src="assets/images/smallbanner2.webp" alt="Pack to School Right Banner"></a>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="footer">
+    <div class="container footer-grid">
+      <div><h3>VỀ GEARVN</h3><a href="#">Giới thiệu</a><a href="#">Tuyển dụng</a><a href="#">Liên hệ</a></div>
+      <div><h3>CHÍNH SÁCH</h3><a href="#">Chính sách bảo hành</a><a href="#">Chính sách giao hàng</a><a href="#">Chính sách bảo mật</a></div>
+      <div><h3>THÔNG TIN</h3><a href="#">Hệ thống cửa hàng</a><a href="#">Hướng dẫn mua hàng</a><a href="#">Hướng dẫn thanh toán</a><a href="#">Hướng dẫn trả góp</a><a href="#">Tra cứu địa chỉ bảo hành</a><a href="#">Build PC</a></div>
+      <div id="support"><h3>TỔNG ĐÀI HỖ TRỢ</h3><p><i class="bi bi-telephone" aria-hidden="true"></i> Mua hàng: <a href="tel:19005301">1900.5301</a></p><p><i class="bi bi-shield-check" aria-hidden="true"></i> Bảo hành: <a href="tel:19005325">1900.5325</a></p><p><i class="bi bi-chat-left-text" aria-hidden="true"></i> Khiếu nại: <a href="tel:18006173">1800.6173</a></p><p><i class="bi bi-envelope" aria-hidden="true"></i> Email: <a href="mailto:cskh@gearvn.com">cskh@gearvn.com</a></p></div>
+      <div class="footer-payment"><h3>ĐƠN VỊ VẬN CHUYỂN</h3><div class="logo-row"><img src="assets/images/ghn.webp" alt="GHN"><img src="assets/images/ém.webp" alt="EMS"><img src="assets/images/gvn.webp" alt="GVN"></div><h3>CÁCH THỨC THANH TOÁN</h3><div class="pay-row"><img src="assets/images/pay1.webp" alt=""><img src="assets/images/pay_2.webp" alt=""><img src="assets/images/pay_3.webp" alt=""><img src="assets/images/pay_4.webp" alt=""><img src="assets/images/pay_5.webp" alt=""><img src="assets/images/pay_6.webp" alt=""><img src="assets/images/pay_7.webp" alt=""><img src="assets/images/pay_8.webp" alt=""></div></div>
+    </div>
+    <div class="container social-row">
+      <strong>KẾT NỐI VỚI CHÚNG TÔI</strong>
+      <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a><a href="#" aria-label="TikTok"><i class="bi bi-tiktok" aria-hidden="true"></i></a><a href="#" aria-label="YouTube"><i class="bi bi-youtube" aria-hidden="true"></i></a><a href="#" aria-label="Cộng đồng"><i class="bi bi-people-fill" aria-hidden="true"></i></a>
+      <img class="certification" src="assets/images/tick.webp" alt="Đã thông báo Bộ Công Thương">
+    </div>
+  </footer>
+
+  <!-- SỬA LẠI JAVASCRIPT ĐỂ XỬ LÝ SỰ KIỆN BẤM MÀ KHÔNG BỊ NHẢY TRANG -->
+  <script>
+    function showOrder(id) {
+        // 1. Ẩn tất cả các phần nội dung
+        document.getElementById('order-list').classList.remove('active');
+        document.getElementById('detail-225338').classList.remove('active');
+        document.getElementById('detail-223319').classList.remove('active');
+        document.getElementById('detail-218626').classList.remove('active');
+
+        // 2. Hiện đúng chi tiết được chọn
+        document.getElementById(id).classList.add('active');
+
+        // 3. Cuộn trang lên đầu khu vực nội dung để người dùng thấy ngay chi tiết (không bị dính dưới chân trang)
+        document.querySelector('.account-main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function backToList() {
+        // 1. Ẩn chi tiết
+        document.getElementById('detail-225338').classList.remove('active');
+        document.getElementById('detail-223319').classList.remove('active');
+        document.getElementById('detail-218626').classList.remove('active');
+
+        // 2. Hiện danh sách
+        document.getElementById('order-list').classList.add('active');
+
+        // 3. Cuộn lên đầu khu vực nội dung
+        document.querySelector('.account-main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>

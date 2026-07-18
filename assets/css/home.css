@@ -244,3 +244,324 @@ button, input { font: inherit; }
   .floating-contact { right: 12px; bottom: 15px; }
   .floating-contact a { width: 48px; height: 48px; }
 }
+
+/* 1. Lớp nền mờ phủ toàn màn hình */
+.gvn-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5) !important;
+  z-index: 99999 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Kích hoạt hiển thị Modal */
+.gvn-modal-overlay.active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* 2. Hộp thoại Bo góc Trắng */
+.gvn-modal-box {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  padding: 40px 35px 30px 35px !important;
+  position: relative !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  box-sizing: border-box !important;
+  margin: 20px;
+  animation: gvnModalBounce 0.3s ease-out;
+}
+
+@keyframes gvnModalBounce {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Nút X đóng nhanh */
+.gvn-modal-close {
+  position: absolute !important;
+  top: 16px !important;
+  right: 20px !important;
+  background: none !important;
+  border: none !important;
+  font-size: 28px !important;
+  color: #888 !important;
+  cursor: pointer !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  transition: color 0.2s;
+}
+
+.gvn-modal-close:hover {
+  color: #000000 !important;
+}
+
+/* 3. Quản lý các Tab nội dung */
+.gvn-tab-content {
+  display: none !important;
+}
+
+.gvn-tab-content.active {
+  display: block !important;
+}
+
+/* Tiêu đề chữ in hoa đậm */
+.gvn-modal-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #222222 !important;
+  margin: 0 0 5px 0 !important;
+  text-align: left !important;
+  letter-spacing: 0.3px !important;
+  border: none !important;
+  line-height: 1.4 !important;
+}
+
+/* Link chuyển đổi phương thức (sđt / email) */
+.gvn-switch-mode {
+  text-align: right !important;
+  margin-bottom: 20px !important;
+}
+
+.gvn-switch-mode a {
+  color: #555555 !important;
+  font-size: 13px !important;
+  text-decoration: underline !important;
+}
+
+.gvn-switch-mode a:hover {
+  color: #e30016 !important;
+}
+
+/* 4. Cấu trúc Input & Ẩn hiện mật khẩu */
+.gvn-input-group {
+  margin-bottom: 14px !important;
+  position: relative !important;
+}
+
+.gvn-input-group input {
+  width: 100% !important;
+  padding: 13px 16px !important;
+  border: 1px solid #cccccc !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  color: #333333 !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  background: #ffffff !important;
+  text-transform: none !important;
+  transition: border-color 0.2s;
+}
+
+.gvn-input-group input:focus {
+  border-color: #666666 !important;
+}
+
+.gvn-password-wrapper {
+  position: relative !important;
+}
+
+/* Icon con mắt Bootstrap */
+.gvn-toggle-pwd {
+  position: absolute !important;
+  right: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  cursor: pointer !important;
+  color: #666666 !important;
+  font-size: 16px !important;
+  z-index: 10 !important;
+  transition: color 0.2s;
+}
+
+.gvn-toggle-pwd:hover {
+  color: #000000 !important;
+}
+
+/* Quên mật khẩu */
+.gvn-forgot-pwd {
+  text-align: right !important;
+  margin: 8px 0 20px 0 !important;
+}
+
+.gvn-forgot-pwd a {
+  color: #555555 !important;
+  font-size: 13px !important;
+  text-decoration: underline !important;
+}
+
+.gvn-forgot-pwd a:hover {
+  color: #e30016 !important;
+}
+
+/* 5. Hệ thống Nút bấm chính (Đỏ GEARVN) */
+.gvn-btn-submit {
+  width: 100% !important;
+  padding: 14px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  letter-spacing: 0.5px !important;
+  transition: background 0.2s;
+}
+
+.gvn-btn-submit.btn-red {
+  background: #e30016 !important;
+  color: #ffffff !important;
+}
+
+.gvn-btn-submit.btn-red:hover {
+  background: #c20013 !important;
+}
+
+/* Đường gạch ngang phân cách "hoặc đăng nhập bằng" */
+.gvn-separator {
+  text-align: center !important;
+  margin: 25px 0 20px 0 !important;
+  position: relative !important;
+}
+
+.gvn-separator::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  width: 100% !important;
+  height: 1px !important;
+  background: #dddddd !important;
+  z-index: 1 !important;
+}
+
+.gvn-separator span {
+  background: #ffffff !important;
+  padding: 0 15px !important;
+  position: relative !important;
+  z-index: 2 !important;
+  color: #666666 !important;
+  font-size: 13px !important;
+}
+
+/* 6. Các nút Mạng xã hội */
+.gvn-social-actions {
+  display: flex !important;
+  gap: 15px !important;
+  margin-bottom: 25px !important;
+}
+
+.gvn-btn-social {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 12px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  transition: opacity 0.2s;
+}
+
+.gvn-btn-social:hover {
+  opacity: 0.9;
+}
+
+.gvn-btn-social.btn-gg {
+  background: #df4a32 !important;
+}
+
+.gvn-btn-social.btn-fb {
+  background: #3b5998 !important;
+}
+
+/* Footer Modal chuyển đổi đăng ký / đăng nhập */
+.gvn-modal-footer {
+  text-align: center !important;
+  font-size: 14px !important;
+  color: #444444 !important;
+}
+
+.gvn-modal-footer a {
+  color: #007bff !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+.gvn-modal-footer a:hover {
+  text-decoration: underline !important;
+}
+/* Sửa phần tab cho nằm ngang */
+.order-tabs-header { 
+    display: flex; 
+    gap: 20px; 
+    border-bottom: 1px solid #eee; 
+    margin-bottom: 20px; 
+}
+.order-tab-item { 
+    padding: 10px 0; 
+    cursor: pointer; 
+    font-size: 14px; 
+    color: #555;
+    border-bottom: 2px solid transparent; 
+}
+.order-tab-item.active { 
+    color: #e30016; 
+    border-bottom: 2px solid #e30016; 
+    font-weight: bold; 
+}
+
+/* Sửa ô tìm kiếm */
+.order-search-box { 
+    display: flex; 
+    align-items: center; 
+    border: 1px solid #ccc; 
+    padding: 8px 12px; 
+    border-radius: 4px; 
+    margin-bottom: 20px; 
+}
+.order-search-box input { 
+    flex: 1; border: none; outline: none; padding-left: 10px; 
+}
+
+/* Sửa bảng */
+.order-table { width: 100%; border-collapse: collapse; }
+.order-table th, .order-table td { 
+    padding: 12px; 
+    border-bottom: 1px solid #eee; 
+    text-align: left; 
+    font-size: 14px; 
+}
+.order-table th { color: #888; font-weight: normal; }
+.account-main-content h1 {
+    font-size: 20px; 
+    font-weight: 500; 
+    margin-top: 0; 
+    margin-bottom: 30px; 
+    color: #e30016; /* Đổi màu thành đỏ tại đây */
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 15px;
+}
+/* Đảm bảo trạng thái active luôn có màu đỏ */
+.account-menu li.active a { color: #e30016 !important; font-weight: bold; }
+.account-menu li.active a i { color: #e30016 !important; }
+
+/* CSS cho bảng nếu bạn cần nó hiển thị đẹp như hình 2 */
+.account-main-content table th { color: #555; padding: 10px; border-bottom: 2px solid #eee; }
+.account-main-content table td { padding: 15px 10px; border-bottom: 1px solid #eee; }
