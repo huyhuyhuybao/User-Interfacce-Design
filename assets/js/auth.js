@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.removeItem('gvn_logged_in');
       localStorage.removeItem('gvn_user_name');
       updateHeaderUI(); 
-      window.location.href = 'KhacDuy_2274802010106_Login.html';
+      window.location.href = 'BaoHuy_2474802010133_Home.html';
     }
   }
 

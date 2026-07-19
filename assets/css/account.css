@@ -82,7 +82,7 @@
 .btn-submit-profile:hover { background: #c20013; }
 
 /* Banner 2 bên */
-.side-banner-left, .side-banner-right { position: absolute; top: 0; width: 120px; z-index: 10; }
+.side-banner-left, .side-banner-right { position: absolute; top: 0; width: 120px; }
 .side-banner-left { left: -140px; }
 .side-banner-right { right: -140px; }
 .side-banner-left img, .side-banner-right img { width: 100%; height: auto; display: block; border-radius: 4px; }

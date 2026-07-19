@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="assets/css/product-list.css">
+  <!-- Thêm CSS Login để hiển thị Modal đẹp -->
+  <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body id="top">
   <div class="top-promo">
@@ -38,7 +40,11 @@
         <a href="#footer"><i class="bi bi-geo-alt" aria-hidden="true"></i><b>Hệ thống<small>Showroom</small></b></a>
         <a href="#footer"><i class="bi bi-clipboard-check" aria-hidden="true"></i><b>Tra cứu<small>đơn hàng</small></b></a>
         <a href="#"><i class="bi bi-cart3" aria-hidden="true"></i><b>Giỏ hàng</b></a>
-        <a class="login" href="#"><i class="bi bi-person" aria-hidden="true"></i><b>Đăng nhập</b></a>
+        
+        <!-- SỬA Ở ĐÂY: Thêm ID gvnAccountWrapper để auth.js render dropdown -->
+        <div class="account-dropdown-wrapper" id="gvnAccountWrapper">
+          <a class="login" href="#" id="openLoginBtn"><i class="bi bi-person" aria-hidden="true"></i><b>Đăng nhập</b></a>
+        </div>
       </nav>
     </div>
   </header>
@@ -47,7 +53,7 @@
     <div class="container service-nav__inner">
       <a href="#"><i class="bi bi-tag" aria-hidden="true"></i><span>BUILD PC tặng màn hình 240Hz</span></a>
       <a href="#"><i class="bi bi-arrow-repeat" aria-hidden="true"></i><span>Thu cũ</span></a>
-      <a href="#"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Tin tức</span></a>
+      <a href="#news"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Tin tức</span></a>
       <a href="#"><i class="bi bi-tools" aria-hidden="true"></i><span>Dịch vụ kỹ thuật tại nhà</span></a>
       <a href="#"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Thu cũ đổi mới</span></a>
       <a href="#"><i class="bi bi-shield-check" aria-hidden="true"></i><span>Tra cứu bảo hành</span></a>
@@ -221,7 +227,7 @@
     <div class="container footer-grid">
       <div><h3>VỀ GEARVN</h3><a href="#">Giới thiệu</a><a href="#">Tuyển dụng</a><a href="#">Liên hệ</a></div>
       <div><h3>CHÍNH SÁCH</h3><a href="#">Chính sách bảo hành</a><a href="#">Chính sách giao hàng</a><a href="#">Chính sách bảo mật</a></div>
-      <div><h3>THÔNG TIN</h3><a href="#">Hệ thống cửa hàng</a><a href="#">Hướng dẫn mua hàng</a><a href="#">Hướng dẫn thanh toán</a><a href="#">Hướng dẫn trả góp</a><a href="#">Build PC</a></div>
+      <div><h3>THÔNG TIN</h3><a href="#">Hệ thống cửa hàng</a><a href="#">Hướng dẫn mua hàng</a><a href="#">Hướng dẫn thanh toán</a><a href="#">Hướng dẫn trả góp</a><a href="#">Tra cứu địa chỉ bảo hành</a><a href="#">Build PC</a></div>
       <div id="support"><h3>TỔNG ĐÀI HỖ TRỢ</h3><p><i class="bi bi-telephone"></i> Mua hàng: <a href="tel:19005301">1900.5301</a></p><p><i class="bi bi-shield-check"></i> Bảo hành: <a href="tel:19005325">1900.5325</a></p><p><i class="bi bi-envelope"></i> Email: <a href="mailto:cskh@gearvn.com">cskh@gearvn.com</a></p></div>
       <div class="footer-payment"><h3>ĐƠN VỊ VẬN CHUYỂN</h3><div class="logo-row"><img src="assets/images/ghn.webp" alt="GHN"><img src="assets/images/ém.webp" alt="EMS"><img src="assets/images/gvn.webp" alt="GVN"></div><h3>CÁCH THỨC THANH TOÁN</h3><div class="pay-row"><img src="assets/images/pay1.webp" alt=""><img src="assets/images/pay_2.webp" alt=""><img src="assets/images/pay_3.webp" alt=""><img src="assets/images/pay_4.webp" alt=""><img src="assets/images/pay_5.webp" alt=""><img src="assets/images/pay_6.webp" alt=""><img src="assets/images/pay_7.webp" alt=""><img src="assets/images/pay_8.webp" alt=""></div></div>
     </div>
@@ -248,5 +254,7 @@
   <div class="floating-contact"><a href="#support" aria-label="Chat hỗ trợ"><i class="bi bi-robot"></i></a><a href="#" aria-label="Nhắn tin"><i class="bi bi-chat-dots-fill"></i></a></div>
   <script src="assets/js/search.js"></script>
   <script src="assets/js/product-list.js"></script>
+  <!-- Thêm auth.js để kích hoạt tính năng đăng nhập/đăng xuất -->
+  <script src="assets/js/auth.js"></script>
 </body>
 </html>
