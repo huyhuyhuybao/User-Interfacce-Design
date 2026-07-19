@@ -210,7 +210,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         closeModal();
         updateHeaderUI();
-        window.location.href = 'KhacDuy_2274802010106_Account.html';
+
+        const returnUrl =
+          localStorage.getItem('gvn_return_url');
+
+        localStorage.removeItem('gvn_return_url');
+
+        window.location.href = returnUrl ||
+          'KhacDuy_2274802010106_Account.html';
       } else {
         alert('Sai tài khoản hoặc mật khẩu! Vui lòng kiểm tra lại.');
       }
