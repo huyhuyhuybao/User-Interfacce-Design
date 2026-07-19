@@ -10,7 +10,7 @@
         <a href="#footer"><svg class="action-icon" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><b>Hệ thống<small>Showroom</small></b></a>
         <a href="#"><svg class="action-icon" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.5h6V4M9 13l2 2 4-5"/></svg><b>Tra cứu<small>đơn hàng</small></b></a>
         <a href="MinhHuy_2474802016546_Shopping.html"><svg class="action-icon" viewBox="0 0 24 24"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9.5" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><b>Giỏ hàng</b></a>
-        <a class="login" href="#"><svg class="action-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><b>Xin Chào<small>Minh Huy</small></b></a>
+        <a class="login" href="#"><svg class="action-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><b>Xin Chào<small>Tài Khoản </small></b></a>
       </nav>
     </div>
   </header>
@@ -75,11 +75,20 @@
         <div class="address-form customer-form">
           <div class="field">
             <label for="customerName">Nhập họ tên</label>
-            <input id="customerName" value="Nguyễn Minh Huy" autocomplete="name">
+            <input
+              id="customerName"
+              placeholder="Nhập họ tên"
+              autocomplete="name"
+            >
           </div>
           <div class="field">
             <label for="customerPhone">Nhập số điện thoại</label>
-            <input id="customerPhone" value="090x...x358" autocomplete="tel">
+            <input
+              id="customerPhone"
+              type="tel"
+              placeholder="Nhập số điện thoại"
+              autocomplete="tel"
+            >
           </div>
         </div>
 
@@ -90,19 +99,60 @@
           <div class="address-form delivery-grid">
             <div class="field">
               <label for="city">Tỉnh / Thành phố</label>
-              <select id="city"><option>Hồ Chí Minh</option></select>
-            </div>
-            <div class="field">
-              <label for="district">Quận / Huyện</label>
-              <select id="district"><option>Quận 7</option></select>
-            </div>
-            <div class="field">
-              <label for="ward">Phường / Xã</label>
-              <select id="ward"><option>Phường 02</option></select>
-            </div>
-            <div class="field">
-              <label for="street">Tên đường</label>
-              <input id="street" value="Đường Huỳnh Tấn Phát">
+              <select id="city">
+              <option value="" selected disabled>Chọn Tỉnh / Thành phố</option>
+              <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+              <option value="Hà Nội">Hà Nội</option>
+              <option value="Đà Nẵng">Đà Nẵng</option>
+              <option value="Cần Thơ">Cần Thơ</option>
+              <option value="Bình Dương">Bình Dương</option>
+              <option value="Đồng Nai">Đồng Nai</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="district">Quận / Huyện</label>
+            <select id="district">
+              <option value="" selected disabled>Chọn Quận / Huyện</option>
+              <option value="Quận 1">Quận 1</option>
+              <option value="Quận 3">Quận 3</option>
+              <option value="Quận 4">Quận 4</option>
+              <option value="Quận 5">Quận 5</option>
+              <option value="Quận 6">Quận 6</option>
+              <option value="Quận 7">Quận 7</option>
+              <option value="Quận 8">Quận 8</option>
+              <option value="Quận 10">Quận 10</option>
+              <option value="Quận 11">Quận 11</option>
+              <option value="Quận 12">Quận 12</option>
+              <option value="Quận Bình Thạnh">Quận Bình Thạnh</option>
+              <option value="Quận Gò Vấp">Quận Gò Vấp</option>
+              <option value="Quận Phú Nhuận">Quận Phú Nhuận</option>
+              <option value="Quận Tân Bình">Quận Tân Bình</option>
+              <option value="Quận Tân Phú">Quận Tân Phú</option>
+              <option value="Quận Bình Tân">Quận Bình Tân</option>
+              <option value="Thành phố Thủ Đức">Thành phố Thủ Đức</option>
+              <option value="Huyện Bình Chánh">Huyện Bình Chánh</option>
+              <option value="Huyện Cần Giờ">Huyện Cần Giờ</option>
+              <option value="Huyện Củ Chi">Huyện Củ Chi</option>
+              <option value="Huyện Hóc Môn">Huyện Hóc Môn</option>
+              <option value="Huyện Nhà Bè">Huyện Nhà Bè</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="ward">Phường / Xã</label>
+            <input
+              id="ward"
+              type="text"
+              placeholder="Nhập Phường / Xã"
+            >
+          </div>
+              <input
+                id="street"
+                type="text"
+                placeholder="Nhập tên đường, số nhà"
+                autocomplete="street-address"
+              >
             </div>
           </div>
         </div>
@@ -140,9 +190,9 @@
         <h1>Thông tin thanh toán</h1>
 
         <div class="info-grid">
-          <strong>Khách hàng:</strong><span id="summaryName">Nguyễn Minh Huy</span>
-          <strong>Số điện thoại:</strong><span id="summaryPhone">090x...x358</span>
-          <strong>Địa chỉ nhận hàng:</strong><span id="summaryAddress">Đường Huỳnh Tấn Phát, Phường 02, Quận 7, Hồ Chí Minh</span>
+          <strong>Khách hàng:</strong><span id="summaryName">Chưa nhập</span>
+          <strong>Số điện thoại:</strong><span id="summaryPhone">Chưa nhập</span>
+          <strong>Địa chỉ nhận hàng:</strong><span id="summaryAddress">Chưa nhập</span>
           <strong>Tạm tính:</strong><span class="price-red">107.970.000đ</span>
           <strong>Phí vận chuyển:</strong><span class="price-red">Miễn phí</span>
         </div>
@@ -164,7 +214,9 @@
         </div>
 
         <button id="placeOrder" class="place-order" type="button">ĐẶT HÀNG NGAY</button>
-        <div id="successMessage" class="success-message">Đặt hàng thành công! Cảm ơn Minh Huy.</div>
+        <div id="successMessage" class="success-message">
+          Đặt hàng thành công! Cảm ơn bạn.
+        </div>
       </div>
     </section>
   </div>
