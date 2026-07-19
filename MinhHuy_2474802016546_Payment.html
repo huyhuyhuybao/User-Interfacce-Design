@@ -24,7 +24,7 @@
       <nav class="quick-actions" aria-label="Tiện ích nhanh">
         <a href="#support"><svg class="action-icon" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H5a1 1 0 0 1-1-1v-5Zm16 0h-3v6h2a1 1 0 0 0 1-1v-5ZM17 20c0 1.1-.9 2-2 2h-3"/></svg><b>Hotline<small>1900.5301</small></b></a>
         <a href="#footer"><svg class="action-icon" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><b>Hệ thống<small>Showroom</small></b></a>
-        <a href="#"><svg class="action-icon" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.5h6V4M9 13l2 2 4-5"/></svg><b>Tra cứu<small>đơn hàng</small></b></a>
+        <a href="KhacDuy_2274802010106_Order.html"><svg class="action-icon" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.5h6V4M9 13l2 2 4-5"/></svg><b>Tra cứu<small>đơn hàng</small></b></a>
         <a href="MinhHuy_2474802016546_Shopping.html"><svg class="action-icon" viewBox="0 0 24 24"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9.5" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><b>Giỏ hàng</b></a>
         <a class="login" href="#"><svg class="action-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><b>Xin Chào<small>Khắc Duy </small></b></a>
       </nav>
@@ -197,7 +197,7 @@
         <label class="shipping-choice"><span><input type="radio" name="shipping"> Nhận tại cửa hàng</span><strong>0đ</strong></label>
 
         <div class="totals info-total">
-          <div class="total-row final"><span>Tổng tiền:</span><strong class="price-red">107.970.000đ</strong></div>
+          <div class="total-row final"><span>Tổng tiền:</span><strong id="infoTotal" class="price-red">0đ</strong></div>
         </div>
 
         <button id="continuePayment" class="place-order" type="button">TIẾP TỤC THANH TOÁN</button>
@@ -212,7 +212,7 @@
           <strong>Khách hàng:</strong><span id="summaryName">Chưa nhập</span>
           <strong>Số điện thoại:</strong><span id="summaryPhone">Chưa nhập</span>
           <strong>Địa chỉ nhận hàng:</strong><span id="summaryAddress">Chưa nhập</span>
-          <strong>Tạm tính:</strong><span class="price-red">107.970.000đ</span>
+          <strong>Tạm tính:</strong><span id="summarySubtotal" class="price-red">0đ</span>
           <strong>Phí vận chuyển:</strong><span class="price-red">Miễn phí</span>
         </div>
 
@@ -224,12 +224,12 @@
         </div>
 
         <h2 class="section-title">Chọn hình thức thanh toán</h2>
-        <label class="payment-option"><input type="radio" checked name="method"> 💵 Thanh toán khi giao hàng (COD)</label>
-        <label class="payment-option"><input type="radio" name="method"> 💳 Thanh toán bằng thẻ ngân hàng</label>
+        <label class="payment-option"><input type="radio" checked name="method" value="Thanh toán khi giao hàng (COD)"> 💵 Thanh toán khi giao hàng (COD)</label>
+        <label class="payment-option"><input type="radio" name="method" value="Thanh toán bằng thẻ ngân hàng"> 💳 Thanh toán bằng thẻ ngân hàng</label>
 
         <div class="totals">
           <div class="total-row"><span>Phí vận chuyển:</span><strong>0đ</strong></div>
-          <div class="total-row final"><span>Tổng tiền:</span><strong id="paymentTotal" class="price-red">107.970.000đ</strong></div>
+          <div class="total-row final"><span>Tổng tiền:</span><strong id="paymentTotal" class="price-red">0đ</strong></div>
         </div>
 
         <button id="placeOrder" class="place-order" type="button">ĐẶT HÀNG NGAY</button>
