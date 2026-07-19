@@ -110,8 +110,32 @@
 
     title.textContent = currentProduct.name;
 
-    breadcrumb.textContent =
-      `⌂ Trang Chủ / ${currentProduct.category || 'Sản phẩm'} / ${currentProduct.name}`;
+    const categoryName =
+  currentProduct.category === 'PC'
+    ? 'PC GVN'
+    : currentProduct.category || 'Sản phẩm';
+
+const categoryLink =
+  currentProduct.category === 'PC'
+    ? 'BaoHuy_2474802010133_Home.html#pc'
+    : 'BaoHuy_2474802010133_ProductList.html';
+
+breadcrumb.innerHTML = `
+  <a href="BaoHuy_2474802010133_Home.html">
+    <i class="bi bi-house-fill" aria-hidden="true"></i>
+    Trang chủ
+  </a>
+
+  <span>/</span>
+
+  <a href="${categoryLink}">
+    ${categoryName}
+  </a>
+
+  <span>/</span>
+
+  <span>${currentProduct.name}</span>
+`;
 
     mainImage.src = currentProduct.image;
     mainImage.alt = currentProduct.name;

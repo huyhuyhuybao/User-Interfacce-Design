@@ -356,35 +356,10 @@ svg {
 
 /* Nút liên hệ nổi */
 
-.floating-contact {
-  position: fixed;
-  z-index: 30;
-  right: 24px;
-  bottom: 48px;
-  display: grid;
-  gap: 12px;
-}
-
-.floating-contact a {
-  width: 54px;
-  height: 54px;
-  display: grid;
-  place-items: center;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  color: #fff;
-  background: var(--red);
-  box-shadow: 0 4px 15px rgb(0 0 0 / 18%);
-}
-
-.floating-contact a:last-child {
-  background: #1769ff;
-}
-
-.floating-contact svg {
-  width: 25px;
-  height: 25px;
-}
+.floating-contact { position: fixed; z-index: 20; right: 26px; bottom: 55px; display: grid; gap: 13px; }
+.floating-contact a { width: 58px; height: 58px; display: grid; place-items: center; border: 3px solid #fff; border-radius: 50%; color: #fff; background: var(--red); box-shadow: 0 4px 15px rgb(0 0 0 / 18%); font-size: 28px; }
+.floating-contact a:last-child { background: #1769ff; }
+.floating-contact a:hover { transform: translateY(-2px); }
 
 /* Trang sản phẩm */
 
@@ -866,4 +841,25 @@ svg {
   .buy-row {
     grid-template-columns: 1fr;
   }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #666;
+}
+
+.breadcrumb a {
+  color: #0068ff;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb i {
+  color: #1683ff;
 }
