@@ -7,6 +7,8 @@
   <title>GEARVN - Trang chủ</title>
   <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/home.css">
+  <!-- Thêm CSS cho Modal đăng nhập -->
+  <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body id="top">
   <div class="top-promo">
@@ -18,7 +20,8 @@
 
   <header class="site-header">
     <div class="container header-main">
-      <a class="brand" href="#top" aria-label="Về đầu trang chủ">
+      <!-- Đổi href logo: Khi bấm vào logo, nó ở lại trang Home -->
+      <a class="brand" href="BaoHuy_2474802010133_Home.html" aria-label="Về trang chủ">
         <img class="brand__mark" src="assets/images/logo-mark.png" alt="">
         <span class="brand__name">GEARVN<small>GEARVN.COM</small></span>
       </a>
@@ -37,7 +40,11 @@
         <a href="#footer"><i class="bi bi-geo-alt" aria-hidden="true"></i><b>Hệ thống<small>Showroom</small></b></a>
         <a href="#footer"><i class="bi bi-clipboard-check" aria-hidden="true"></i><b>Tra cứu<small>đơn hàng</small></b></a>
         <a href="#"><i class="bi bi-cart3" aria-hidden="true"></i><b>Giỏ hàng</b></a>
-        <a class="login" href="#"><i class="bi bi-person" aria-hidden="true"></i><b>Đăng nhập</b></a>
+        
+        <!-- Thêm ID để auth.js biết chỗ này để render nút Login/Dropdown -->
+        <div class="account-dropdown-wrapper" id="gvnAccountWrapper">
+          <a class="login" href="#" id="openLoginBtn"><i class="bi bi-person" aria-hidden="true"></i><b>Đăng nhập</b></a>
+        </div>
       </nav>
     </div>
   </header>
@@ -322,6 +329,9 @@
   </footer>
 
   <div class="floating-contact"><a href="#support" aria-label="Chat hỗ trợ"><i class="bi bi-robot" aria-hidden="true"></i></a><a href="#" aria-label="Nhắn tin"><i class="bi bi-chat-dots-fill" aria-hidden="true"></i></a></div>
+  
   <script src="assets/js/search.js"></script>
+  <!-- Thêm JS auth.js để kích hoạt đăng nhập/đăng xuất -->
+  <script src="assets/js/auth.js"></script>
 </body>
 </html>

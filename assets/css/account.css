@@ -1,0 +1,100 @@
+/* assets/css/account.css */
+
+/* Dropdown tài khoản Header */
+.account-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.account-dropdown {
+  position: absolute;
+  top: 100%; right: 0; width: 250px;
+  background: #fff; border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  padding: 10px 0; z-index: 999; display: none; margin-top: 10px; text-align: left;
+}
+.account-dropdown::before {
+  content: ""; position: absolute; bottom: 100%; right: 25px;
+  border-width: 8px; border-style: solid; border-color: transparent transparent #fff transparent;
+}
+.account-dropdown-wrapper:hover .account-dropdown { display: block; }
+.account-dropdown .dropdown-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+  color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;
+}
+.account-dropdown .dropdown-item:hover { background: #f8f9fa; color: #e30016; }
+.account-dropdown .dropdown-item i { font-size: 16px; color: #333; }
+.account-dropdown .dropdown-item:hover i { color: #e30016; }
+.account-dropdown .dropdown-item.welcome-line {
+  border-bottom: 1px solid #eee; pointer-events: none; font-weight: 500; padding-bottom: 12px; margin-bottom: 6px;
+}
+
+/* Cấu trúc trang Account */
+.account-page-container {
+  max-width: 1200px; margin: 30px auto; padding: 0 15px;
+  display: flex; gap: 30px; position: relative; box-sizing: border-box;
+}
+.account-sidebar {
+  flex: 0 0 260px; background: #fff; border: 1px solid #e1e1e1;
+  border-radius: 4px; padding: 20px 0; align-self: flex-start;
+}
+.user-avatar-zone {
+  display: flex; align-items: center; gap: 15px; padding: 0 20px 20px 20px; border-bottom: 1px solid #eee;
+}
+.user-avatar-zone i { font-size: 36px; color: #888; }
+.user-avatar-zone .username { font-size: 16px; font-weight: bold; color: #333; }
+.account-menu { list-style: none; padding: 15px 0 0 0; margin: 0; }
+.account-menu li a {
+  display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+  color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;
+}
+.account-menu li.active a { color: #e30016; font-weight: bold; }
+.account-menu li a:hover { background: #f9f9f9; color: #e30016; }
+.account-menu li a i { font-size: 16px; width: 20px; text-align: center; color: #555; }
+.account-menu li.active a i { color: #e30016; }
+
+/* Nội dung chính */
+.account-main-content {
+  flex: 1; background: #fff; border: 1px solid #e1e1e1;
+  border-radius: 4px; padding: 30px;
+}
+.account-main-content h1 {
+  font-size: 20px; font-weight: 500; margin-top: 0; margin-bottom: 30px; color: #333; border-bottom: 1px solid #eee; padding-bottom: 15px;
+}
+.profile-form { max-width: 650px; }
+.form-row { display: flex; align-items: center; margin-bottom: 20px; }
+.form-row label { flex: 0 0 140px; font-size: 14px; color: #333; text-align: right; padding-right: 25px; box-sizing: border-box; }
+.form-row .form-control-input {
+  flex: 1; padding: 10px 14px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; outline: none; box-sizing: border-box;
+}
+.form-row .form-control-input:focus { border-color: #e30016; }
+.gender-group { display: flex; gap: 25px; font-size: 14px; }
+.gender-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; text-align: left; padding: 0; flex: none; }
+.gender-group input[type="radio"] { margin: 0; width: 16px; height: 16px; cursor: pointer; }
+.birthday-selects { display: flex; gap: 12px; flex: 1; }
+.birthday-selects select {
+  flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; background: #fff; cursor: pointer;
+}
+.btn-submit-profile {
+  background: #e30016; color: #fff; border: none; padding: 12px 35px;
+  font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer;
+  margin-left: 140px; text-transform: uppercase; transition: background 0.2s;
+}
+.btn-submit-profile:hover { background: #c20013; }
+
+/* Banner 2 bên */
+.side-banner-left, .side-banner-right { position: absolute; top: 0; width: 120px; z-index: 10; }
+.side-banner-left { left: -140px; }
+.side-banner-right { right: -140px; }
+.side-banner-left img, .side-banner-right img { width: 100%; height: auto; display: block; border-radius: 4px; }
+
+/* Responsive */
+@media (max-width: 1480px) {
+  .side-banner-left, .side-banner-right { display: none; }
+}
+@media (max-width: 768px) {
+  .account-page-container { flex-direction: column; }
+  .account-sidebar { width: 100%; }
+  .form-row { flex-direction: column; align-items: flex-start; }
+  .form-row label { text-align: left; margin-bottom: 5px; }
+  .btn-submit-profile { margin-left: 0; width: 100%; }
+}
