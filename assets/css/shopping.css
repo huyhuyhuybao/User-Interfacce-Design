@@ -365,18 +365,18 @@ svg {
 /* ============================= */
 /* Nút liên hệ nổi */
 /* ============================= */
-
 .floating-contact {
   position: fixed;
-  z-index: 30;
-  right: 24px;
-  bottom: 48px;
+  z-index: 20;
+  right: 26px;
+  bottom: 55px;
   display: grid;
-  gap: 12px;
+  gap: 13px;
 }
+
 .floating-contact a {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   display: grid;
   place-items: center;
   border: 3px solid #fff;
@@ -384,17 +384,17 @@ svg {
   color: #fff;
   background: var(--red);
   box-shadow: 0 4px 15px rgb(0 0 0 / 18%);
+  font-size: 28px;
+  text-decoration: none;
 }
 
 .floating-contact a:last-child {
   background: #1769ff;
 }
 
-.floating-contact svg {
-  width: 25px;
-  height: 25px;
+.floating-contact a:hover {
+  transform: translateY(-2px);
 }
-
 /* ============================= */
 /* Banner quảng cáo hai bên */
 /* ============================= */
@@ -878,4 +878,23 @@ svg {
   .social-content img {
     max-width: 100%;
   }
+}
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  width: 100%;
+  margin-top: auto;
 }

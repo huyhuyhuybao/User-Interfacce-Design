@@ -273,6 +273,28 @@
   const buyButton = document.getElementById('buyNow');
 
   buyButton.addEventListener('click', () => {
+    const isLoggedIn =
+      localStorage.getItem('gvn_logged_in') === 'true';
+
+    if (!isLoggedIn) {
+      localStorage.setItem(
+        'gvn_return_url',
+        window.location.href
+      );
+
+      const loginButton =
+        document.getElementById('openLoginBtn');
+
+      if (loginButton) {
+        loginButton.click();
+      } else {
+        window.location.href =
+          'KhacDuy_2274802010106_Login.html';
+      }
+
+      return;
+    }
+
     let cart = [];
 
     try {
