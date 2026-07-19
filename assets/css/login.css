@@ -1,0 +1,154 @@
+/* assets/css/login.css */
+
+/* Kiểu dáng cho cụm tài khoản chứa dropdown */
+.account-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Khung menu thả xuống ẩn mặc định */
+.account-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 280px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  padding: 15px;
+  z-index: 999;
+  display: none;
+  margin-top: 10px;
+  text-align: left;
+}
+
+/* Mũi tên nhọn phía trên menu */
+.account-dropdown::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 25px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+/* Hiện menu khi di chuột vào */
+.account-dropdown-wrapper:hover .account-dropdown {
+  display: block;
+}
+
+.account-dropdown .welcome-text, .account-dropdown .welcome-line {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+/* Định dạng link dropdown khi đã đăng nhập */
+.account-dropdown .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.account-dropdown .dropdown-item:hover {
+  background: #f5f5f5;
+  color: #e30016;
+}
+
+/* Hàng chứa 2 nút Đăng nhập / Đăng ký */
+.account-dropdown .btn-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #f1f1f1;
+  padding-bottom: 12px;
+}
+
+.account-dropdown .btn-actions button {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.account-dropdown .btn-login-now {
+  background: #151515;
+  color: #fff;
+  border: 1px solid #151515;
+}
+.account-dropdown .btn-login-now:hover {
+  background: #e30016;
+  border-color: #e30016;
+}
+
+.account-dropdown .btn-register-now {
+  background: #fff;
+  color: #151515;
+  border: 1px solid #151515;
+}
+.account-dropdown .btn-register-now:hover {
+  color: #e30016;
+  border-color: #e30016;
+}
+
+.account-dropdown .help-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #555;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 4px 0;
+}
+.account-dropdown .help-link:hover {
+  color: #e30016;
+}
+
+/* Style cấu trúc Modal dùng chung */
+.gvn-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: all 0.3s ease;
+}
+.gvn-modal-overlay.active {
+  opacity: 1; pointer-events: auto;
+}
+.gvn-modal-box {
+  background: #fff; padding: 30px; border-radius: 8px;
+  width: 100%; max-width: 450px; position: relative;
+}
+.gvn-modal-title { font-size: 16px; margin-bottom: 20px; text-align: center; font-weight: bold; color: #151515; }
+.gvn-modal-close { position: absolute; top: 10px; right: 15px; background: none; border: none; cursor: pointer; font-size: 28px; color: #999; }
+.gvn-input-group { margin-bottom: 15px; position: relative; }
+.gvn-input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 14px; }
+.gvn-password-wrapper .gvn-toggle-pwd { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #666; }
+.gvn-btn-submit { width: 100%; padding: 12px; background: #e30016; color: #fff; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 14px; text-transform: uppercase; }
+.gvn-switch-mode, .gvn-forgot-pwd, .gvn-modal-footer { text-align: center; margin: 12px 0; font-size: 13px; }
+.gvn-switch-mode a, .gvn-forgot-pwd a, .gvn-modal-footer a { color: #e30016; text-decoration: none; font-weight: 500; }
+.gvn-separator { text-align: center; margin: 15px 0; position: relative; }
+.gvn-separator::before { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: #eee; z-index: 1; }
+.gvn-separator span { background: #fff; padding: 0 10px; position: relative; z-index: 2; color: #999; font-size: 12px; }
+.gvn-social-actions { display: flex; gap: 10px; margin-bottom: 15px; }
+.gvn-btn-social { flex: 1; padding: 10px; text-align: center; border: 1px solid #ddd; border-radius: 4px; text-decoration: none; color: #333; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.gvn-tab-content { display: none; }
+.gvn-tab-content.active { display: block; }

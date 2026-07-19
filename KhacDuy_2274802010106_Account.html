@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trang chủ cửa hàng thiết bị công nghệ - bài tập giao diện người dùng">
+  <title>GEARVN - Thông tin tài khoản</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <!-- CSS riêng cho trang Account -->
+  <link rel="stylesheet" href="assets/css/account.css">
+  <!-- CSS Login để hiển thị Modal đẹp -->
+  <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body id="top">
+
+  <div class="top-promo">
+    <div class="container top-promo__inner">
+      <strong><span>GEARVN</span> | “Pack” to School 2026</strong>
+      <a href="#promotions">Giảm lên đến <b>2.500.000đ</b><i class="bi bi-sun-fill promo-sun" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-main">
+      <a class="brand" href="KhacDuy_2274802010106_Login.html" aria-label="Về trang chủ">
+        <img class="brand__mark" src="assets/images/logo-mark.png" alt="">
+        <span class="brand__name">GEARVN<small>GEARVN.COM</small></span>
+      </a>
+
+      <button class="category-button" type="button" aria-label="Mở danh mục">
+        <i class="bi bi-list" aria-hidden="true"></i><span>Danh mục</span>
+      </button>
+
+      <form class="search" action="BaoHuy_2474802010133_ProductList.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Bạn cần tìm gì?" aria-label="Tìm kiếm sản phẩm" required>
+        <button type="submit" aria-label="Tìm kiếm"><i class="bi bi-search" aria-hidden="true"></i></button>
+      </form>
+
+      <nav class="quick-actions" aria-label="Tiện ích khách hàng">
+        <a href="#support"><i class="bi bi-headset" aria-hidden="true"></i><b>Hotline<small>1900.5301</small></b></a>
+        <a href="#footer"><i class="bi bi-geo-alt" aria-hidden="true"></i><b>Hệ thống<small>Showroom</small></b></a>
+        <a href="#footer"><i class="bi bi-clipboard-check" aria-hidden="true"></i><b>Tra cứu<small>đơn hàng</small></b></a>
+        <a href="#"><i class="bi bi-cart3" aria-hidden="true"></i><b>Giỏ hàng</b></a>
+        
+        <!-- Đã thêm ID gvnAccountWrapper để auth.js nhận diện -->
+        <div class="account-dropdown-wrapper" id="gvnAccountWrapper">
+          <!-- auth.js sẽ tự động render lại nội dung cho thẻ này -->
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="service-nav" aria-label="Dịch vụ">
+    <div class="container service-nav__inner">
+      <a href="#"><i class="bi bi-tag" aria-hidden="true"></i><span>BUILD PC tặng màn hình 240Hz</span></a>
+      <a href="#"><i class="bi bi-arrow-repeat" aria-hidden="true"></i><span>Thu cũ</span></a>
+      <a href="#news"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Tin tức</span></a>
+      <a href="#"><i class="bi bi-tools" aria-hidden="true"></i><span>Dịch vụ kỹ thuật tại nhà</span></a>
+      <a href="#"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Thu cũ đổi mới</span></a>
+      <a href="#"><i class="bi bi-shield-check" aria-hidden="true"></i><span>Tra cứu bảo hành</span></a>
+    </div>
+  </nav>
+
+  <main class="account-page-container">
+    
+    <aside class="side-banner-left">
+      <a href="#">
+        <img src="assets/images/smallbanner1.webp" alt="Pack to School Left Banner">
+      </a>
+    </aside>
+
+    <!-- Cột Menu Trái (Sidebar) -->
+    <section class="account-sidebar">
+      <div class="user-avatar-zone">
+        <i class="bi bi-person-circle"></i>
+        <span class="username" id="sidebarUserName">Tài khoản</span>
+      </div>
+      <ul class="account-menu">
+        <li class="active">
+          <a href="KhacDuy_2274802010106_Account.html"><i class="bi bi-person-fill"></i> Thông tin tài khoản</a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-geo-alt"></i> Số địa chỉ</a>
+        </li>
+        <li>
+          <a href="KhacDuy_2274802010106_Order.html"><i class="bi bi-clipboard-check"></i> Quản lý đơn hàng</a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-eye"></i> Sản phẩm đã xem</a>
+        </li>
+        <li>
+          <a href="#" id="sidebarLogoutBtn"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="account-main-content">
+      <h1>Thông tin tài khoản</h1>
+      
+      <form class="profile-form" id="accountProfileForm">
+        <div class="form-row">
+          <label for="txtFullName">Họ Tên</label>
+          <input type="text" id="txtFullName" class="form-control-input" placeholder="Họ và tên" required>
+        </div>
+
+        <div class="form-row">
+          <label>Giới tính</label>
+          <div class="gender-group">
+            <label><input type="radio" name="gender" value="male" checked> Nam</label>
+            <label><input type="radio" name="gender" value="female"> Nữ</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="txtPhone">Số điện thoại</label>
+          <input type="tel" id="txtPhone" class="form-control-input" placeholder="Nhập số điện thoại">
+        </div>
+
+        <div class="form-row">
+          <label for="txtEmail">Email</label>
+          <input type="email" id="txtEmail" class="form-control-input" placeholder="Email" required>
+        </div>
+
+        <div class="form-row">
+          <label>Ngày sinh</label>
+          <div class="birthday-selects">
+            <select aria-label="Chọn Ngày" id="birthDay">
+              <option value="">Ngày</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+              <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+              <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+              <option value="13">13</option><option value="14">14</option><option value="15">15</option>
+              <option value="16">16</option><option value="17">17</option><option value="18">18</option>
+              <option value="19">19</option><option value="20">20</option><option value="21">21</option>
+              <option value="22">22</option><option value="23">23</option><option value="24">24</option>
+              <option value="25">25</option><option value="26">26</option><option value="27">27</option>
+              <option value="28">28</option><option value="29">29</option><option value="30">30</option>
+              <option value="31">31</option>
+            </select>
+            <select aria-label="Chọn Tháng" id="birthMonth">
+              <option value="">Tháng</option>
+              <option value="1">Tháng 1</option><option value="2">Tháng 2</option>
+              <option value="3">Tháng 3</option><option value="4">Tháng 4</option>
+              <option value="5">Tháng 5</option><option value="6">Tháng 6</option>
+              <option value="7">Tháng 7</option><option value="8">Tháng 8</option>
+              <option value="9">Tháng 9</option><option value="10">Tháng 10</option>
+              <option value="11">Tháng 11</option><option value="12">Tháng 12</option>
+            </select>
+            <select aria-label="Chọn Năm" id="birthYear">
+              <option value="">Năm</option>
+              <option value="2026">2026</option><option value="2025">2025</option>
+              <option value="2004">2004</option><option value="2003">2003</option>
+              <option value="2002">2002</option><option value="2001">2001</option>
+              <option value="2000">2000</option><option value="1999">1999</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-bottom: 0;">
+          <button type="submit" class="btn-submit-profile">Lưu thay đổi</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="side-banner-right">
+      <a href="#">
+        <img src="assets/images/smallbanner2.webp" alt="Pack to School Right Banner">
+      </a>
+    </aside>
+
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="container footer-grid">
+      <div><h3>VỀ GEARVN</h3><a href="#">Giới thiệu</a><a href="#">Tuyển dụng</a><a href="#">Liên hệ</a></div>
+      <div><h3>CHÍNH SÁCH</h3><a href="#">Chính sách bảo hành</a><a href="#">Chính sách giao hàng</a><a href="#">Chính sách bảo mật</a></div>
+      <div><h3>THÔNG TIN</h3><a href="#">Hệ thống cửa hàng</a><a href="#">Hướng dẫn mua hàng</a><a href="#">Hướng dẫn thanh toán</a><a href="#">Hướng dẫn trả góp</a><a href="#">Tra cứu địa chỉ bảo hành</a><a href="#">Build PC</a></div>
+      <div id="support"><h3>TỔNG ĐÀI HỖ TRỢ</h3><p><i class="bi bi-telephone" aria-hidden="true"></i> Mua hàng: <a href="tel:19005301">1900.5301</a></p><p><i class="bi bi-shield-check" aria-hidden="true"></i> Bảo hành: <a href="tel:19005325">1900.5325</a></p><p><i class="bi bi-chat-left-text" aria-hidden="true"></i> Khiếu nại: <a href="tel:18006173">1800.6173</a></p><p><i class="bi bi-envelope" aria-hidden="true"></i> Email: <a href="mailto:cskh@gearvn.com">cskh@gearvn.com</a></p></div>
+      <div class="footer-payment"><h3>ĐƠN VỊ VẬN CHUYỂN</h3><div class="logo-row"><img src="assets/images/ghn.webp" alt="GHN"><img src="assets/images/ém.webp" alt="EMS"><img src="assets/images/gvn.webp" alt="GVN"></div><h3>CÁCH THỨC THANH TOÁN</h3><div class="pay-row"><img src="assets/images/pay1.webp" alt=""><img src="assets/images/pay_2.webp" alt=""><img src="assets/images/pay_3.webp" alt=""><img src="assets/images/pay_4.webp" alt=""><img src="assets/images/pay_5.webp" alt=""><img src="assets/images/pay_6.webp" alt=""><img src="assets/images/pay_7.webp" alt=""><img src="assets/images/pay_8.webp" alt=""></div></div>
+    </div>
+    <div class="container social-row">
+      <strong>KẾT NỐI VỚI CHÚNG TÔI</strong>
+      <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a><a href="#" aria-label="TikTok"><i class="bi bi-tiktok" aria-hidden="true"></i></a><a href="#" aria-label="YouTube"><i class="bi bi-youtube" aria-hidden="true"></i></a><a href="#" aria-label="Cộng đồng"><i class="bi bi-people-fill" aria-hidden="true"></i></a>
+      <img class="certification" src="assets/images/tick.webp" alt="Đã thông báo Bộ Công Thương">
+    </div>
+  </footer>
+
+  <div class="floating-contact">
+    <a href="#support" aria-label="Chat hỗ trợ"><i class="bi bi-robot" aria-hidden="true"></i></a>
+    <a href="#" aria-label="Nhắn tin"><i class="bi bi-chat-dots-fill" aria-hidden="true"></i></a>
+  </div>
+
+  <!-- Gọi JS chính -->
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/account.js"></script>
+</body>
+</html>
