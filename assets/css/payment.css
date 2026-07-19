@@ -670,6 +670,11 @@ svg {
   background: #d90013;
 }
 
+.place-order:disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}
+
 .stage-back {
   margin: 0 0 14px;
   padding: 0;
@@ -694,6 +699,13 @@ svg {
 
 .success-message.show {
   display: block;
+}
+
+.success-message a {
+  display: inline-block;
+  margin-left: 8px;
+  color: #075aa6;
+  text-decoration: underline;
 }
 
 /* Màn hình nhỏ hơn 1180px */

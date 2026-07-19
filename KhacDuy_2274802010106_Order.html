@@ -24,7 +24,7 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container header-main">
-      <a class="brand" href="KhacDuy_2274802010106_Login.html" aria-label="Về trang chủ">
+      <a class="brand" href="BaoHuy_2474802010133_Home.html" aria-label="Về trang chủ">
         <img class="brand__mark" src="assets/images/logo-mark.png" alt="">
         <span class="brand__name">GEARVN<small>GEARVN.COM</small></span>
       </a>
@@ -38,7 +38,7 @@
       <nav class="quick-actions" aria-label="Tiện ích khách hàng">
         <a href="#support"><i class="bi bi-headset" aria-hidden="true"></i><b>Hotline<small>1900.5301</small></b></a>
         <a href="#footer"><i class="bi bi-geo-alt" aria-hidden="true"></i><b>Hệ thống<small>Showroom</small></b></a>
-        <a href="#footer"><i class="bi bi-clipboard-check" aria-hidden="true"></i><b>Tra cứu<small>đơn hàng</small></b></a>
+        <a href="KhacDuy_2274802010106_Order.html"><i class="bi bi-clipboard-check" aria-hidden="true"></i><b>Tra cứu<small>đơn hàng</small></b></a>
         <a href="#"><i class="bi bi-cart3" aria-hidden="true"></i><b>Giỏ hàng</b></a>
         
         <!-- ID gvnAccountWrapper để auth.js render giao diện -->
@@ -96,18 +96,18 @@
       <!-- Danh sách -->
       <div id="order-list" class="content-section active">
         <h1>Quản lý đơn hàng</h1>
-        <div class="order-tabs-header">
-          <div class="order-tab-item active">TẤT CẢ</div>
-          <div class="order-tab-item">MỚI</div>
-          <div class="order-tab-item">ĐANG XỬ LÝ</div>
-          <div class="order-tab-item">ĐANG VẬN CHUYỂN</div>
-          <div class="order-tab-item">HOÀN THÀNH</div>
-          <div class="order-tab-item">HUỶ (3)</div>
+        <div class="order-tabs-header" role="tablist" aria-label="Lọc đơn hàng theo trạng thái">
+          <button class="order-tab-item active" type="button" data-status="Tất cả">TẤT CẢ</button>
+          <button class="order-tab-item" type="button" data-status="Mới">MỚI</button>
+          <button class="order-tab-item" type="button" data-status="Đang xử lý">ĐANG XỬ LÝ</button>
+          <button class="order-tab-item" type="button" data-status="Đang vận chuyển">ĐANG VẬN CHUYỂN</button>
+          <button class="order-tab-item" type="button" data-status="Hoàn thành">HOÀN THÀNH</button>
+          <button class="order-tab-item" type="button" data-status="Hủy">HỦY (<span id="cancelCount">0</span>)</button>
         </div>
         <div class="order-search-box">
           <i class="bi bi-search"></i>
-          <input type="text" placeholder="Tìm đơn hàng theo Mã đơn hàng">
-          <span style="color: #e30016; margin-left: 10px; cursor: pointer;">Tìm đơn hàng</span>
+          <input id="orderSearchInput" type="search" placeholder="Tìm đơn hàng theo Mã đơn hàng">
+          <button id="orderSearchButton" type="button">Tìm đơn hàng</button>
         </div>
 
         <!-- Table Body sẽ được render bởi JS trong order.js -->
@@ -118,73 +118,17 @@
               <th>Ngày đặt</th>
               <th>Trạng thái</th>
               <th>Tổng tiền</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="ordersTableBody">
             <!-- Nội dung sẽ được order.js chèn vào đây -->
           </tbody>
         </table>
       </div>
 
-      <!-- Chi tiết 225338 -->
-      <div id="detail-225338" class="content-section">
-        <div class="order-detail-header">
-          <h2>Chi tiết đơn hàng #225338 -</h2>
-          <div class="order-date">Đặt lúc: 19:54 Thứ Hai,<br><span>10.03.2025</span></div>
-        </div>
-        <div class="detail-info-row">
-          <div class="detail-info-box"><h4><i class="bi bi-file-text-fill"></i> Thông tin khách hàng</h4><p><span class="label-gray">Người nhận:</span> Khắc Duy - 0981178753</p><p><span class="label-gray">Địa chỉ nhận hàng:</span> 45/3, đường 19, kp4</p></div>
-          <div class="detail-info-box"><h4><i class="bi bi-credit-card-fill" style="color: #f60;"></i> Hình thức thanh toán</h4></div>
-        </div>
-        <div class="detail-product-box">
-          <h4><i class="bi bi-box-seam-fill"></i> Thông tin sản phẩm</h4>
-          <div class="price-row"><span class="label">Giá tạm tính:</span><span class="value">1,680,000đ</span></div>
-          <div class="price-row"><span class="label">Phí vận chuyển:</span><span class="value">25,000đ</span></div>
-          <div class="total-row"><span class="label">Tổng tiền:</span><span class="value">1,705,000đ</span></div>
-          <div class="paid-row"><span class="label"><i class="bi bi-check-circle-fill" style="color: #28a745;"></i> Số tiền đã thanh toán:</span><span class="value" style="color: #e30016;">0đ</span></div>
-        </div>
-        <a href="javascript:void(0)" onclick="backToList()" class="btn-back-list">Quay lại danh sách đơn hàng</a>
-      </div>
-
-      <!-- Chi tiết 223319 -->
-      <div id="detail-223319" class="content-section">
-        <div class="order-detail-header">
-          <h2>Chi tiết đơn hàng #223319 -</h2>
-          <div class="order-date">Đặt lúc: 22:07 Thứ Bảy,<br><span>15.02.2025</span></div>
-        </div>
-        <div class="detail-info-row">
-          <div class="detail-info-box"><h4><i class="bi bi-file-text-fill"></i> Thông tin khách hàng</h4><p><span class="label-gray">Người nhận:</span> Khắc Duy - 0981178753</p><p><span class="label-gray">Địa chỉ nhận hàng:</span> 45/3, đường 19, kp4</p></div>
-          <div class="detail-info-box"><h4><i class="bi bi-credit-card-fill" style="color: #f60;"></i> Hình thức thanh toán</h4></div>
-        </div>
-        <div class="detail-product-box">
-          <h4><i class="bi bi-box-seam-fill"></i> Thông tin sản phẩm</h4>
-          <div class="price-row"><span class="label">Giá tạm tính:</span><span class="value">390,000đ</span></div>
-          <div class="price-row"><span class="label">Phí vận chuyển:</span><span class="value">25,000đ</span></div>
-          <div class="total-row"><span class="label">Tổng tiền:</span><span class="value">415,000đ</span></div>
-          <div class="paid-row"><span class="label"><i class="bi bi-check-circle-fill" style="color: #28a745;"></i> Số tiền đã thanh toán:</span><span class="value" style="color: #e30016;">0đ</span></div>
-        </div>
-        <a href="javascript:void(0)" onclick="backToList()" class="btn-back-list">Quay lại danh sách đơn hàng</a>
-      </div>
-
-      <!-- Chi tiết 218626 -->
-      <div id="detail-218626" class="content-section">
-        <div class="order-detail-header">
-          <h2>Chi tiết đơn hàng #218626 -</h2>
-          <div class="order-date">Đặt lúc: 20:39 Thứ Sáu,<br><span>10.01.2025</span></div>
-        </div>
-        <div class="detail-info-row">
-          <div class="detail-info-box"><h4><i class="bi bi-file-text-fill"></i> Thông tin khách hàng</h4><p><span class="label-gray">Người nhận:</span> Khắc Duy - 0981178753</p><p><span class="label-gray">Địa chỉ nhận hàng:</span> 45/3, đường 19, kp4</p></div>
-          <div class="detail-info-box"><h4><i class="bi bi-credit-card-fill" style="color: #f60;"></i> Hình thức thanh toán</h4></div>
-        </div>
-        <div class="detail-product-box">
-          <h4><i class="bi bi-box-seam-fill"></i> Thông tin sản phẩm</h4>
-          <div class="price-row"><span class="label">Giá tạm tính:</span><span class="value">3,378,000đ</span></div>
-          <div class="price-row"><span class="label">Phí vận chuyển:</span><span class="value">25,000đ</span></div>
-          <div class="total-row"><span class="label">Tổng tiền:</span><span class="value">3,403,000đ</span></div>
-          <div class="paid-row"><span class="label"><i class="bi bi-check-circle-fill" style="color: #28a745;"></i> Số tiền đã thanh toán:</span><span class="value" style="color: #e30016;">0đ</span></div>
-        </div>
-        <a href="javascript:void(0)" onclick="backToList()" class="btn-back-list">Quay lại danh sách đơn hàng</a>
-      </div>
+      <!-- Chi tiết đơn hàng sẽ được order.js render động -->
+      <div id="orderDetail" class="content-section" aria-live="polite"></div>
 
     </section>
 
