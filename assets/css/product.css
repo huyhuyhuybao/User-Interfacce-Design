@@ -863,3 +863,45 @@ svg {
 .breadcrumb i {
   color: #1683ff;
 }
+
+/* Căn nút Đăng nhập giống nút Giỏ hàng */
+.quick-actions .account-dropdown-wrapper {
+  position: relative;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.quick-actions .account-dropdown-wrapper > .login {
+  min-height: 52px;
+  padding: 6px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  color: #fff !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.quick-actions .account-dropdown-wrapper > .login:hover {
+  background: #c90016 !important;
+}
+
+.quick-actions .account-dropdown-wrapper > .login i {
+  width: 24px;
+  color: #fff !important;
+  font-size: 22px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.quick-actions .account-dropdown-wrapper > .login b {
+  color: #fff !important;
+  font-size: 14px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
